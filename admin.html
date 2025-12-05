@@ -405,38 +405,51 @@ function reconstructExam() {
         return {
             q: q.q,
             options: opts,
-            correct: newIndex
+            correct: newIndex,
+            explanation: q.explanation
         };
+
     });
 
     // Score exam
-    let score = 0;
-    let html = `<h2>Reconstructed Exam (Seed ${seed})</h2>`;
+let score = 0;
+let html = `<h2>Reconstructed Exam (Seed ${seed})</h2>`;
 
-    for (let i = 0; i < 30; i++) {
-        const student = studentAnswers[i];
-        const real = finalExam[i].correct;
+for (let i = 0; i < 30; i++) {
 
-        if (student === real) {
-            score++;
-            html += `<div class="correct">
-                        <b>Q${i+1}:</b> Correct ✔  
-                        <br>Student: ${finalExam[i].options[student]}
-                     </div>`;
-        } else {
-            html += `<div class="wrong">
-                        <b>Q${i+1}:</b> Wrong ✘  
-                        <br>Student: ${finalExam[i].options[student] || "No Answer"}
-                        <br>Correct: ${finalExam[i].options[real]}
-                     </div>`;
-        }
+    const student = studentAnswers[i];
+    const real = finalExam[i].correct;
+    const q = finalExam[i];
+
+    if (student === real) {
+        score++;
+        html += `
+        <div class="correct">
+            <b>Q${i+1}:</b> Correct ✔<br>
+            <b>Question:</b> ${q.q}<br>
+            <b>Student Answer:</b> ${q.options[student]}<br>
+            <b>Correct Answer:</b> ${q.options[real]}<br>
+            <b>Explanation:</b> ${q.explanation}
+        </div>`;
+    } 
+    
+    else {
+        html += `
+        <div class="wrong">
+            <b>Q${i+1}:</b> Wrong ✘<br>
+            <b>Question:</b> ${q.q}<br>
+            <b>Student Answer:</b> ${q.options[student] || "Not Answered"}<br>
+            <b>Correct Answer:</b> ${q.options[real]}<br>
+            <b>Explanation:</b> ${q.explanation}
+        </div>`;
     }
+}
 
-    html += `<h3>Final Score: ${score} / 30</h3>`;
+html += `<h3>Final Score: ${score} / 30</h3>`;
 
-    const resultsBox = document.getElementById("results");
-    resultsBox.style.display = "block";
-    resultsBox.innerHTML = html;
+const resultsBox = document.getElementById("results");
+resultsBox.style.display = "block";
+resultsBox.innerHTML = html;
 }
 </script>
 
