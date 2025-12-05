@@ -148,525 +148,525 @@
         =============================================== */
         const rawQuestions = [
 
-/* ----------------------------- SET A (Easy–Medium) ----------------------------- */
-
-{
-    set:"A", level:"easy",
-    q:"Which data type represents whole numbers in Python?",
-    options:["float","str","int","bool"],
-    answer:2,
-    explanation:"int is used for whole numbers without decimals."
-},
-
-{
-    set:"A", level:"easy",
-    q:"What is the output of: print(type('3'))?",
-    options:["int","str","float","bool"],
-    answer:1,
-    explanation:"'3' is a string, so type('3') returns <class 'str'>."
-},
-
-{
-    set:"A", level:"easy",
-    q:"Which operator checks equality?",
-    options:["=","==","===","!="],
-    answer:1,
-    explanation:"== is the comparison operator for equality."
-},
-
-{
-    set:"A", level:"easy",
-    q:"What does len('python') return?",
-    options:["5","6","7","Error"],
-    answer:1,
-    explanation:"The string 'python' contains 6 characters."
-},
-
-{
-    set:"A", level:"easy",
-    q:"Which of the following is a mutable type?",
-    options:["str","int","tuple","list"],
-    answer:3,
-    explanation:"Lists are mutable; strings, ints, tuples are immutable."
-},
-
-{
-    set:"A", level:"easy",
-    q:"Which is NOT a valid variable name?",
-    options:["name_1","_value","2name","firstName"],
-    answer:2,
-    explanation:"Variables cannot start with digits."
-},
-
-{
-    set:"A", level:"easy",
-    q:"Result of: print(10//3)?",
-    options:["3","3.3","4","Error"],
-    answer:0,
-    explanation:"// performs floor division → 3."
-},
-
-{
-    set:"A", level:"easy",
-    q:"Which function converts a string to an integer?",
-    options:["str()","int()","float()","eval()"],
-    answer:1,
-    explanation:"int('123') → 123."
-},
-
-{
-    set:"A", level:"easy",
-    q:"Output: print(bool(''))",
-    options:["True","False","None","Error"],
-    answer:1,
-    explanation:"Empty strings evaluate to False."
-},
-
-{
-    set:"A", level:"easy",
-    q:"Which of these is used for comments in Python?",
-    options:["//","#","/* */","--"],
-    answer:1,
-    explanation:"# is used to create comments."
-},
-
-{
-    set:"A", level:"medium",
-    q:"Output: s='hello'; print(s[0])",
-    options:["h","e","hello","Error"],
-    answer:0,
-    explanation:"s[0] returns the first character."
-},
-
-{
-    set:"A", level:"medium",
-    q:"Which method adds an element to a list?",
-    options:["add()","append()","push()","insertall()"],
-    answer:1,
-    explanation:"list.append(value) adds at the end."
-},
-
-{
-    set:"A", level:"medium",
-    q:"Output: print(type([1,2,3]))",
-    options:["tuple","list","set","dict"],
-    answer:1,
-    explanation:"[] creates a list."
-},
-
-{
-    set:"A", level:"medium",
-    q:"What is the result of: 2 ** 3 ** 1?",
-    options:["8","16","6","Error"],
-    answer:0,
-    explanation:"3 ** 1 = 3 → 2 ** 3 = 8."
-},
-
-{
-    set:"A", level:"medium",
-    q:"Which expression slices first 3 characters of s='Python'?",
-    options:["s[0:3]","s[1:3]","s[:2]","s[2:5]"],
-    answer:0,
-    explanation:"s[0:3] gives 'Pyt'."
-},
-
-{
-    set:"A", level:"medium",
-    q:"Output: print([1,2] + [3,4])",
-    options:["[1,2,3,4]","[1,2][3,4]","Error","[4,3,2,1]"],
-    answer:0,
-    explanation:"+ concatenates lists."
-},
-
-{
-    set:"A", level:"medium",
-    q:"Which type is returned by input()?",
-    options:["int","float","str","depends"],
-    answer:2,
-    explanation:"input() ALWAYS returns a string."
-},
-
-{
-    set:"A", level:"medium",
-    q:"Which operator returns remainder?",
-    options:["/","%","//","**"],
-    answer:1,
-    explanation:"% returns remainder after division."
-},
-
-{
-    set:"A", level:"medium",
-    q:"Output: print('abc' * 2)",
-    options:["'abcabc'","['abc','abc']","Error","None"],
-    answer:0,
-    explanation:"String repetition duplicates the content."
-},
-
-{
-    set:"A", level:"medium",
-    q:"Which function returns max value in list?",
-    options:["top()","largest()","max()","high()"],
-    answer:2,
-    explanation:"max(list) returns the maximum element."
-},
-
-/* ----------------------------- SET B (Control Flow / Medium-Hard) ----------------------------- */
-
-{
-    set:"B", level:"easy",
-    q:"Which keyword starts a loop?",
-    options:["for","loop","iterate","repeat"],
-    answer:0,
-    explanation:"Python loops use 'for' or 'while'."
-},
-
-{
-    set:"B", level:"easy",
-    q:"What does continue do?",
-    options:["Ends loop","Skips next iteration","Skips current iteration","Restarts program"],
-    answer:2,
-    explanation:"continue skips the current iteration."
-},
-
-{
-    set:"B", level:"easy",
-    q:"Output: for i in range(3): print(i)",
-    options:["1 2 3","0 1 2","0 1 2 3","1 2"],
-    answer:1,
-    explanation:"range(3) → 0,1,2."
-},
-
-{
-    set:"B", level:"easy",
-    q:"Which statement begins a conditional?",
-    options:["when","if","case","switch"],
-    answer:1,
-    explanation:"if starts a conditional block."
-},
-
-{
-    set:"B", level:"easy",
-    q:"Which operator means NOT equal?",
-    options:["==","!=","<>","!"],
-    answer:1,
-    explanation:"!= is Python's not-equal operator."
-},
-
-{
-    set:"B", level:"medium",
-    q:"Output: x=3; if x>2: print('A') else: print('B')",
-    options:["A","B","Error","None"],
-    answer:0,
-    explanation:"3 > 2 so prints A."
-},
-
-{
-    set:"B", level:"medium",
-    q:"Output: for i in range(1,4): print(i,end=' ')",
-    options:["1 2 3","0 1 2","1 2 3 4","Error"],
-    answer:0,
-    explanation:"range(1,4) → 1,2,3."
-},
-
-{
-    set:"B", level:"medium",
-    q:"Which statement raises KeyError?",
-    options:["d.get('x')","d['x']","d.pop('x',None)","'x' in d"],
-    answer:1,
-    explanation:"Accessing missing key directly raises KeyError."
-},
-
-{
-    set:"B", level:"medium",
-    q:"Which type is unordered?",
-    options:["list","tuple","set","string"],
-    answer:2,
-    explanation:"Sets are unordered collections."
-},
-
-{
-    set:"B", level:"medium",
-    q:"Output: print(len({'a':1,'b':2}))",
-    options:["1","2","3","Error"],
-    answer:1,
-    explanation:"Dictionary has 2 key-value pairs."
-},
-
-{
-    set:"B", level:"medium",
-    q:"Which loops until condition becomes False?",
-    options:["for","while","repeat","loop"],
-    answer:1,
-    explanation:"while continues until its condition is false."
-},
-
-{
-    set:"B", level:"medium",
-    q:"Output: x=0; for i in [2,4]: x+=i; print(x)",
-    options:["2","4","6","Error"],
-    answer:2,
-    explanation:"x = 0 + 2 + 4 = 6."
-},
-
-{
-    set:"B", level:"medium",
-    q:"Which method removes last element of a list?",
-    options:["pop()","remove()","delete()","cut()"],
-    answer:0,
-    explanation:"pop() removes and returns last element by default."
-},
-
-{
-    set:"B", level:"medium",
-    q:"Which keyword defines a function?",
-    options:["def","func","make","method"],
-    answer:0,
-    explanation:"Functions are defined using the 'def' keyword."
-},
-
-{
-    set:"B", level:"hard",
-    q:"Output: for i in range(1,5,2): print(i,end=' ')",
-    options:["1 3","1 2 3 4","2 4","3 5"],
-    answer:0,
-    explanation:"range(1,5,2) → 1,3."
-},
-
-{
-    set:"B", level:"hard",
-    q:"Output: if False: print(1) elif True: print(2)",
-    options:["1","2","Nothing","Error"],
-    answer:1,
-    explanation:"elif True executes."
-},
-
-{
-    set:"B", level:"hard",
-    q:"Output: print([i*i for i in range(3)])",
-    options:["[1,4,9]","[0,1,4]","[0,1,2]","Error"],
-    answer:1,
-    explanation:"Squares of 0,1,2 → [0,1,4]."
-},
-
-{
-    set:"B", level:"hard",
-    q:"Output: print({1,2,2,3})",
-    options:["{1,2,2,3}","[1,2,3]","{1,2,3}","Error"],
-    answer:2,
-    explanation:"Sets remove duplicates → {1,2,3}."
-},
-
-{
-    set:"B", level:"hard",
-    q:"Which is NOT allowed?",
-    options:["list indexing","tuple indexing","string indexing","set indexing"],
-    answer:3,
-    explanation:"Sets do not support indexing."
-},
-
-{
-    set:"B", level:"hard",
-    q:"Output: x=5; y=10; print(x<y and y>3)",
-    options:["True","False","None","Error"],
-    answer:0,
-    explanation:"Both conditions True → True."
-},
-
-/* ----------------------------- SET C (Functions, Errors, Hard) ----------------------------- */
-
-{
-    set:"C", level:"easy",
-    q:"What error occurs if you access list[10] when list has 3 elements?",
-    options:["TypeError","IndexError","KeyError","ValueError"],
-    answer:1,
-    explanation:"Accessing out of range index raises IndexError."
-},
-
-{
-    set:"C", level:"easy",
-    q:"Output: print(type(True))",
-    options:["int","bool","str","NoneType"],
-    answer:1,
-    explanation:"True and False are boolean values."
-},
-
-{
-    set:"C", level:"easy",
-    q:"Which module provides mathematical functions?",
-    options:["sys","os","math","random"],
-    answer:2,
-    explanation:"math contains functions like sqrt(), sin(), floor(), etc."
-},
-
-{
-    set:"C", level:"easy",
-    q:"What does float('3.5') return?",
-    options:["3","3.5","'3.5'","Error"],
-    answer:1,
-    explanation:"It converts string to float."
-},
-
-{
-    set:"C", level:"easy",
-    q:"Which raises ZeroDivisionError?",
-    options:["5/0","5//0","5%0","All of these"],
-    answer:3,
-    explanation:"Any division or modulo by zero raises ZeroDivisionError."
-},
-
-{
-    set:"C", level:"easy",
-    q:"Which opens a file for reading?",
-    options:["open('f','w')","open('f','r')","open('f','a')","open('f')"],
-    answer:1,
-    explanation:"'r' mode is for reading; default is also 'r'."
-},
-
-{
-    set:"C", level:"medium",
-    q:"Output: def f(x): return x+1; print(f(4))",
-    options:["4","5","None","Error"],
-    answer:1,
-    explanation:"4 + 1 = 5."
-},
-
-{
-    set:"C", level:"medium",
-    q:"Output: print('PCEP'.lower())",
-    options:["PCEP","pcep","Error","Pcep"],
-    answer:1,
-    explanation:"lower() converts to lowercase."
-},
-
-{
-    set:"C", level:"medium",
-    q:"Which data type is immutable?",
-    options:["list","set","tuple","dict"],
-    answer:2,
-    explanation:"Tuple cannot be changed after creation."
-},
-
-{
-    set:"C", level:"medium",
-    q:"Which statement catches exceptions?",
-    options:["try-except","handle-error","catch()","if-else"],
-    answer:0,
-    explanation:"try-except handles runtime exceptions."
-},
-
-{
-    set:"C", level:"medium",
-    q:"Output: print(len((1,2,3)))",
-    options:["2","3","4","Error"],
-    answer:1,
-    explanation:"Tuple has 3 elements."
-},
-
-{
-    set:"C", level:"medium",
-    q:"Which returns absolute value?",
-    options:["abs()","fabs()","positive()","absval()"],
-    answer:0,
-    explanation:"abs(-5) → 5."
-},
-
-{
-    set:"C", level:"medium",
-    q:"Output: print('abc'.replace('a','z'))",
-    options:["abc","zbc","abz","Error"],
-    answer:1,
-    explanation:"Replaces 'a' with 'z'."
-},
-
-{
-    set:"C", level:"medium",
-    q:"Output: sum([1,2,3])",
-    options:["3","6","1+2+3","Error"],
-    answer:1,
-    explanation:"sum(list) adds numbers → 6."
-},
-
-{
-    set:"C", level:"medium",
-    q:"Which method removes whitespace?",
-    options:["trim()","strip()","clean()","erase()"],
-    answer:1,
-    explanation:"strip() removes leading and trailing spaces."
-},
-
-{
-    set:"C", level:"hard",
-    q:"Output: x=0; for i in range(3): x+=i; print(x)",
-    options:["0","3","6","Error"],
-    answer:1,
-    explanation:"0+1+2 = 3."
-},
-
-{
-    set:"C", level:"hard",
-    q:"Output: print([1,2,3]*2)",
-    options:["[1,2,3,1,2,3]","[2,4,6]","Error","[1,2]"],
-    answer:0,
-    explanation:"List repetition duplicates elements."
-},
-
-{
-    set:"C", level:"hard",
-    q:"What is result of '3'+'4'?",
-    options:["7","34","'34'","Error"],
-    answer:2,
-    explanation:"String concatenation results in '34'."
-},
-
-{
-    set:"C", level:"hard",
-    q:"Which causes TypeError?",
-    options:["3+'3'","'3'+'3'","3+3","3*'3'"],
-    answer:0,
-    explanation:"Cannot add integer and string."
-},
-
-{
-    set:"C", level:"hard",
-    q:"Output: print([i for i in range(3) if i%2==0])",
-    options:["[0,2]","[1]","[0]","[1,2]"],
-    answer:0,
-    explanation:"Even numbers from 0..2 → [0,2]."
-},
-
-{
-    set:"C", level:"hard",
-    q:"Which function returns ASCII code of a character?",
-    options:["ord()","chr()","ascii()","code()"],
-    answer:0,
-    explanation:"ord('A') returns 65."
-},
-
-{
-    set:"C", level:"hard",
-    q:"Output: print(chr(97))",
-    options:["A","a","Error","ASCII"],
-    answer:1,
-    explanation:"chr(97) returns 'a'."
-},
-
-{
-    set:"C", level:"hard",
-    q:"Output: list('abc')",
-    options:["['abc']","['a','b','c']","('a','b','c')","Error"],
-    answer:1,
-    explanation:"list(string) splits into characters."
-},
-
-{
-    set:"C", level:"hard",
-    q:"Output: print(min([3,1,2]))",
-    options:["1","2","3","Error"],
-    answer:0,
-    explanation:"min returns smallest element → 1."
-}
-
-];
+            /* ----------------------------- SET A (Easy–Medium) ----------------------------- */
+
+            {
+                set: "A", level: "easy",
+                q: "Which data type represents whole numbers in Python?",
+                options: ["float", "str", "int", "bool"],
+                answer: 2,
+                explanation: "int is used for whole numbers without decimals."
+            },
+
+            {
+                set: "A", level: "easy",
+                q: "What is the output of: print(type('3'))?",
+                options: ["int", "str", "float", "bool"],
+                answer: 1,
+                explanation: "'3' is a string, so type('3') returns <class 'str'>."
+            },
+
+            {
+                set: "A", level: "easy",
+                q: "Which operator checks equality?",
+                options: ["=", "==", "===", "!="],
+                answer: 1,
+                explanation: "== is the comparison operator for equality."
+            },
+
+            {
+                set: "A", level: "easy",
+                q: "What does len('python') return?",
+                options: ["5", "6", "7", "Error"],
+                answer: 1,
+                explanation: "The string 'python' contains 6 characters."
+            },
+
+            {
+                set: "A", level: "easy",
+                q: "Which of the following is a mutable type?",
+                options: ["str", "int", "tuple", "list"],
+                answer: 3,
+                explanation: "Lists are mutable; strings, ints, tuples are immutable."
+            },
+
+            {
+                set: "A", level: "easy",
+                q: "Which is NOT a valid variable name?",
+                options: ["name_1", "_value", "2name", "firstName"],
+                answer: 2,
+                explanation: "Variables cannot start with digits."
+            },
+
+            {
+                set: "A", level: "easy",
+                q: "Result of: print(10//3)?",
+                options: ["3", "3.3", "4", "Error"],
+                answer: 0,
+                explanation: "// performs floor division → 3."
+            },
+
+            {
+                set: "A", level: "easy",
+                q: "Which function converts a string to an integer?",
+                options: ["str()", "int()", "float()", "eval()"],
+                answer: 1,
+                explanation: "int('123') → 123."
+            },
+
+            {
+                set: "A", level: "easy",
+                q: "Output: print(bool(''))",
+                options: ["True", "False", "None", "Error"],
+                answer: 1,
+                explanation: "Empty strings evaluate to False."
+            },
+
+            {
+                set: "A", level: "easy",
+                q: "Which of these is used for comments in Python?",
+                options: ["//", "#", "/* */", "--"],
+                answer: 1,
+                explanation: "# is used to create comments."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "Output: s='hello'; print(s[0])",
+                options: ["h", "e", "hello", "Error"],
+                answer: 0,
+                explanation: "s[0] returns the first character."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "Which method adds an element to a list?",
+                options: ["add()", "append()", "push()", "insertall()"],
+                answer: 1,
+                explanation: "list.append(value) adds at the end."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "Output: print(type([1,2,3]))",
+                options: ["tuple", "list", "set", "dict"],
+                answer: 1,
+                explanation: "[] creates a list."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "What is the result of: 2 ** 3 ** 1?",
+                options: ["8", "16", "6", "Error"],
+                answer: 0,
+                explanation: "3 ** 1 = 3 → 2 ** 3 = 8."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "Which expression slices first 3 characters of s='Python'?",
+                options: ["s[0:3]", "s[1:3]", "s[:2]", "s[2:5]"],
+                answer: 0,
+                explanation: "s[0:3] gives 'Pyt'."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "Output: print([1,2] + [3,4])",
+                options: ["[1,2,3,4]", "[1,2][3,4]", "Error", "[4,3,2,1]"],
+                answer: 0,
+                explanation: "+ concatenates lists."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "Which type is returned by input()?",
+                options: ["int", "float", "str", "depends"],
+                answer: 2,
+                explanation: "input() ALWAYS returns a string."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "Which operator returns remainder?",
+                options: ["/", "%", "//", "**"],
+                answer: 1,
+                explanation: "% returns remainder after division."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "Output: print('abc' * 2)",
+                options: ["'abcabc'", "['abc','abc']", "Error", "None"],
+                answer: 0,
+                explanation: "String repetition duplicates the content."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "Which function returns max value in list?",
+                options: ["top()", "largest()", "max()", "high()"],
+                answer: 2,
+                explanation: "max(list) returns the maximum element."
+            },
+
+            /* ----------------------------- SET B (Control Flow / Medium-Hard) ----------------------------- */
+
+            {
+                set: "B", level: "easy",
+                q: "Which keyword starts a loop?",
+                options: ["for", "loop", "iterate", "repeat"],
+                answer: 0,
+                explanation: "Python loops use 'for' or 'while'."
+            },
+
+            {
+                set: "B", level: "easy",
+                q: "What does continue do?",
+                options: ["Ends loop", "Skips next iteration", "Skips current iteration", "Restarts program"],
+                answer: 2,
+                explanation: "continue skips the current iteration."
+            },
+
+            {
+                set: "B", level: "easy",
+                q: "Output: for i in range(3): print(i)",
+                options: ["1 2 3", "0 1 2", "0 1 2 3", "1 2"],
+                answer: 1,
+                explanation: "range(3) → 0,1,2."
+            },
+
+            {
+                set: "B", level: "easy",
+                q: "Which statement begins a conditional?",
+                options: ["when", "if", "case", "switch"],
+                answer: 1,
+                explanation: "if starts a conditional block."
+            },
+
+            {
+                set: "B", level: "easy",
+                q: "Which operator means NOT equal?",
+                options: ["==", "!=", "<>", "!"],
+                answer: 1,
+                explanation: "!= is Python's not-equal operator."
+            },
+
+            {
+                set: "B", level: "medium",
+                q: "Output: x=3; if x>2: print('A') else: print('B')",
+                options: ["A", "B", "Error", "None"],
+                answer: 0,
+                explanation: "3 > 2 so prints A."
+            },
+
+            {
+                set: "B", level: "medium",
+                q: "Output: for i in range(1,4): print(i,end=' ')",
+                options: ["1 2 3", "0 1 2", "1 2 3 4", "Error"],
+                answer: 0,
+                explanation: "range(1,4) → 1,2,3."
+            },
+
+            {
+                set: "B", level: "medium",
+                q: "Which statement raises KeyError?",
+                options: ["d.get('x')", "d['x']", "d.pop('x',None)", "'x' in d"],
+                answer: 1,
+                explanation: "Accessing missing key directly raises KeyError."
+            },
+
+            {
+                set: "B", level: "medium",
+                q: "Which type is unordered?",
+                options: ["list", "tuple", "set", "string"],
+                answer: 2,
+                explanation: "Sets are unordered collections."
+            },
+
+            {
+                set: "B", level: "medium",
+                q: "Output: print(len({'a':1,'b':2}))",
+                options: ["1", "2", "3", "Error"],
+                answer: 1,
+                explanation: "Dictionary has 2 key-value pairs."
+            },
+
+            {
+                set: "B", level: "medium",
+                q: "Which loops until condition becomes False?",
+                options: ["for", "while", "repeat", "loop"],
+                answer: 1,
+                explanation: "while continues until its condition is false."
+            },
+
+            {
+                set: "B", level: "medium",
+                q: "Output: x=0; for i in [2,4]: x+=i; print(x)",
+                options: ["2", "4", "6", "Error"],
+                answer: 2,
+                explanation: "x = 0 + 2 + 4 = 6."
+            },
+
+            {
+                set: "B", level: "medium",
+                q: "Which method removes last element of a list?",
+                options: ["pop()", "remove()", "delete()", "cut()"],
+                answer: 0,
+                explanation: "pop() removes and returns last element by default."
+            },
+
+            {
+                set: "B", level: "medium",
+                q: "Which keyword defines a function?",
+                options: ["def", "func", "make", "method"],
+                answer: 0,
+                explanation: "Functions are defined using the 'def' keyword."
+            },
+
+            {
+                set: "B", level: "hard",
+                q: "Output: for i in range(1,5,2): print(i,end=' ')",
+                options: ["1 3", "1 2 3 4", "2 4", "3 5"],
+                answer: 0,
+                explanation: "range(1,5,2) → 1,3."
+            },
+
+            {
+                set: "B", level: "hard",
+                q: "Output: if False: print(1) elif True: print(2)",
+                options: ["1", "2", "Nothing", "Error"],
+                answer: 1,
+                explanation: "elif True executes."
+            },
+
+            {
+                set: "B", level: "hard",
+                q: "Output: print([i*i for i in range(3)])",
+                options: ["[1,4,9]", "[0,1,4]", "[0,1,2]", "Error"],
+                answer: 1,
+                explanation: "Squares of 0,1,2 → [0,1,4]."
+            },
+
+            {
+                set: "B", level: "hard",
+                q: "Output: print({1,2,2,3})",
+                options: ["{1,2,2,3}", "[1,2,3]", "{1,2,3}", "Error"],
+                answer: 2,
+                explanation: "Sets remove duplicates → {1,2,3}."
+            },
+
+            {
+                set: "B", level: "hard",
+                q: "Which is NOT allowed?",
+                options: ["list indexing", "tuple indexing", "string indexing", "set indexing"],
+                answer: 3,
+                explanation: "Sets do not support indexing."
+            },
+
+            {
+                set: "B", level: "hard",
+                q: "Output: x=5; y=10; print(x<y and y>3)",
+                options: ["True", "False", "None", "Error"],
+                answer: 0,
+                explanation: "Both conditions True → True."
+            },
+
+            /* ----------------------------- SET C (Functions, Errors, Hard) ----------------------------- */
+
+            {
+                set: "C", level: "easy",
+                q: "What error occurs if you access list[10] when list has 3 elements?",
+                options: ["TypeError", "IndexError", "KeyError", "ValueError"],
+                answer: 1,
+                explanation: "Accessing out of range index raises IndexError."
+            },
+
+            {
+                set: "C", level: "easy",
+                q: "Output: print(type(True))",
+                options: ["int", "bool", "str", "NoneType"],
+                answer: 1,
+                explanation: "True and False are boolean values."
+            },
+
+            {
+                set: "C", level: "easy",
+                q: "Which module provides mathematical functions?",
+                options: ["sys", "os", "math", "random"],
+                answer: 2,
+                explanation: "math contains functions like sqrt(), sin(), floor(), etc."
+            },
+
+            {
+                set: "C", level: "easy",
+                q: "What does float('3.5') return?",
+                options: ["3", "3.5", "'3.5'", "Error"],
+                answer: 1,
+                explanation: "It converts string to float."
+            },
+
+            {
+                set: "C", level: "easy",
+                q: "Which raises ZeroDivisionError?",
+                options: ["5/0", "5//0", "5%0", "All of these"],
+                answer: 3,
+                explanation: "Any division or modulo by zero raises ZeroDivisionError."
+            },
+
+            {
+                set: "C", level: "easy",
+                q: "Which opens a file for reading?",
+                options: ["open('f','w')", "open('f','r')", "open('f','a')", "open('f')"],
+                answer: 1,
+                explanation: "'r' mode is for reading; default is also 'r'."
+            },
+
+            {
+                set: "C", level: "medium",
+                q: "Output: def f(x): return x+1; print(f(4))",
+                options: ["4", "5", "None", "Error"],
+                answer: 1,
+                explanation: "4 + 1 = 5."
+            },
+
+            {
+                set: "C", level: "medium",
+                q: "Output: print('PCEP'.lower())",
+                options: ["PCEP", "pcep", "Error", "Pcep"],
+                answer: 1,
+                explanation: "lower() converts to lowercase."
+            },
+
+            {
+                set: "C", level: "medium",
+                q: "Which data type is immutable?",
+                options: ["list", "set", "tuple", "dict"],
+                answer: 2,
+                explanation: "Tuple cannot be changed after creation."
+            },
+
+            {
+                set: "C", level: "medium",
+                q: "Which statement catches exceptions?",
+                options: ["try-except", "handle-error", "catch()", "if-else"],
+                answer: 0,
+                explanation: "try-except handles runtime exceptions."
+            },
+
+            {
+                set: "C", level: "medium",
+                q: "Output: print(len((1,2,3)))",
+                options: ["2", "3", "4", "Error"],
+                answer: 1,
+                explanation: "Tuple has 3 elements."
+            },
+
+            {
+                set: "C", level: "medium",
+                q: "Which returns absolute value?",
+                options: ["abs()", "fabs()", "positive()", "absval()"],
+                answer: 0,
+                explanation: "abs(-5) → 5."
+            },
+
+            {
+                set: "C", level: "medium",
+                q: "Output: print('abc'.replace('a','z'))",
+                options: ["abc", "zbc", "abz", "Error"],
+                answer: 1,
+                explanation: "Replaces 'a' with 'z'."
+            },
+
+            {
+                set: "C", level: "medium",
+                q: "Output: sum([1,2,3])",
+                options: ["3", "6", "1+2+3", "Error"],
+                answer: 1,
+                explanation: "sum(list) adds numbers → 6."
+            },
+
+            {
+                set: "C", level: "medium",
+                q: "Which method removes whitespace?",
+                options: ["trim()", "strip()", "clean()", "erase()"],
+                answer: 1,
+                explanation: "strip() removes leading and trailing spaces."
+            },
+
+            {
+                set: "C", level: "hard",
+                q: "Output: x=0; for i in range(3): x+=i; print(x)",
+                options: ["0", "3", "6", "Error"],
+                answer: 1,
+                explanation: "0+1+2 = 3."
+            },
+
+            {
+                set: "C", level: "hard",
+                q: "Output: print([1,2,3]*2)",
+                options: ["[1,2,3,1,2,3]", "[2,4,6]", "Error", "[1,2]"],
+                answer: 0,
+                explanation: "List repetition duplicates elements."
+            },
+
+            {
+                set: "C", level: "hard",
+                q: "What is result of '3'+'4'?",
+                options: ["7", "34", "'34'", "Error"],
+                answer: 2,
+                explanation: "String concatenation results in '34'."
+            },
+
+            {
+                set: "C", level: "hard",
+                q: "Which causes TypeError?",
+                options: ["3+'3'", "'3'+'3'", "3+3", "3*'3'"],
+                answer: 0,
+                explanation: "Cannot add integer and string."
+            },
+
+            {
+                set: "C", level: "hard",
+                q: "Output: print([i for i in range(3) if i%2==0])",
+                options: ["[0,2]", "[1]", "[0]", "[1,2]"],
+                answer: 0,
+                explanation: "Even numbers from 0..2 → [0,2]."
+            },
+
+            {
+                set: "C", level: "hard",
+                q: "Which function returns ASCII code of a character?",
+                options: ["ord()", "chr()", "ascii()", "code()"],
+                answer: 0,
+                explanation: "ord('A') returns 65."
+            },
+
+            {
+                set: "C", level: "hard",
+                q: "Output: print(chr(97))",
+                options: ["A", "a", "Error", "ASCII"],
+                answer: 1,
+                explanation: "chr(97) returns 'a'."
+            },
+
+            {
+                set: "C", level: "hard",
+                q: "Output: list('abc')",
+                options: ["['abc']", "['a','b','c']", "('a','b','c')", "Error"],
+                answer: 1,
+                explanation: "list(string) splits into characters."
+            },
+
+            {
+                set: "C", level: "hard",
+                q: "Output: print(min([3,1,2]))",
+                options: ["1", "2", "3", "Error"],
+                answer: 0,
+                explanation: "min returns smallest element → 1."
+            }
+
+        ];
 
         /* ====================================================
            SEED UTILITIES (must match exam system)

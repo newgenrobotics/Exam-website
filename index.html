@@ -1,313 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>PCEP Mock Exam – NewGen Robotics</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PCEP Mock Exam – NewGen Robotics</title>
 
-<style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #eef1f5;
-    }
-
-    .header {
-        background: #19376D;
-        color: white;
-        padding: 12px 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 18px;
-        flex-wrap: wrap;
-    }
-
-    .header span {
-        word-break: break-all;
-    }
-
-    .layout {
-        display: flex;
-        height: calc(100vh - 60px);
-    }
-
-    /* Sidebar */
-    .sidebar {
-        width: 220px;
-        background: #0B2447;
-        color: white;
-        padding: 15px;
-        overflow-y: auto;
-        flex-shrink: 0;
-    }
-
-    .sidebar h3 {
-        margin-top: 0;
-        margin-bottom: 10px;
-        font-size: 16px;
-    }
-
-    .q-btn {
-        display: inline-block;
-        width: 40px;
-        height: 40px;
-        margin: 4px;
-        background: #576CBC;
-        color: white;
-        border-radius: 6px;
-        text-align: center;
-        line-height: 40px;
-        cursor: pointer;
-        font-size: 14px;
-        user-select: none;
-        transition: 0.2s;
-    }
-
-    .q-btn:hover {
-        background: #A5D7E8;
-        color: #0B2447;
-    }
-
-    .q-answered {
-        background: #4CAF50 !important;
-    }
-
-    .q-current {
-        outline: 2px solid yellow;
-    }
-
-    .q-locked {
-        cursor: not-allowed;
-        opacity: 0.6;
-    }
-
-    /* Right Side (Questions) */
-    .main {
-        flex: 1;
-        padding: 18px;
-        overflow-y: auto;
-    }
-
-    #timer {
-        font-size: 20px;
-        font-weight: bold;
-        color: #d9534f;
-        margin-bottom: 12px;
-    }
-
-    .progress {
-        height: 8px;
-        background: #ccc;
-        border-radius: 4px;
-        margin-bottom: 12px;
-        overflow: hidden;
-    }
-
-    .progress-bar {
-        height: 8px;
-        background: #19376D;
-        width: 0%;
-        transition: width 0.3s;
-    }
-
-    .question-box {
-        background: #fff;
-        padding: 16px;
-        border-radius: 12px;
-        box-shadow: 0 0 10px #ccc;
-    }
-
-    .question-box h2 {
-        margin-top: 0;
-        margin-bottom: 8px;
-        font-size: 20px;
-    }
-
-    .question-meta {
-        font-size: 13px;
-        color: #666;
-        margin-bottom: 10px;
-    }
-
-    .options label {
-        display: block;
-        background: #f7f7f7;
-        padding: 12px;
-        margin: 8px 0;
-        border-radius: 6px;
-        cursor: pointer;
-        border: 1px solid #ddd;
-        font-size: 15px;
-    }
-
-    .options input {
-        margin-right: 10px;
-    }
-
-    /* Buttons */
-    .nav-buttons {
-        margin-top: 18px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    button {
-        padding: 12px 20px;
-        background: #19376D;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 15px;
-        min-width: 110px;
-    }
-
-    button:hover {
-        background: #0B2447;
-    }
-
-    button:disabled {
-        background: #999;
-        cursor: not-allowed;
-    }
-
-    /* Result Overlay */
-    .result-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.6);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 999;
-        padding: 20px;
-    }
-
-    .result-box {
-        background: #fff;
-        padding: 20px;
-        border-radius: 12px;
-        max-width: 430px;
-        width: 100%;
-        text-align: center;
-        box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    }
-
-    .result-box button {
-        width: 100%;
-        margin-top: 12px;
-    }
-
-    .small-note {
-        font-size: 12px;
-        color: #666;
-    }
-
-    /* 📱 MOBILE RESPONSIVE FIXES */
-    @media (max-width: 900px) {
-        .layout {
-            flex-direction: column;
-            height: auto;
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef1f5;
         }
 
-        .sidebar {
-            width: 100%;
+        .header {
+            background: #19376D;
+            color: white;
+            padding: 12px 15px;
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
             flex-wrap: wrap;
-            justify-content: center;
-            padding-bottom: 10px;
-            max-height: 200px;
         }
 
-        .main {
-            height: auto;
+        .header span {
+            word-break: break-all;
+        }
+
+        .layout {
+            display: flex;
+            height: calc(100vh - 60px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            background: #0B2447;
+            color: white;
+            padding: 15px;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .sidebar h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 16px;
         }
 
         .q-btn {
-            width: 38px;
-            height: 38px;
-            line-height: 38px;
-            font-size: 13px;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            margin: 4px;
+            background: #576CBC;
+            color: white;
+            border-radius: 6px;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+            font-size: 14px;
+            user-select: none;
+            transition: 0.2s;
         }
-    }
 
-    @media (max-width: 600px) {
-        .header {
-            font-size: 16px;
-            padding: 10px;
+        .q-btn:hover {
+            background: #A5D7E8;
+            color: #0B2447;
+        }
+
+        .q-answered {
+            background: #4CAF50 !important;
+        }
+
+        .q-current {
+            outline: 2px solid yellow;
+        }
+
+        .q-locked {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        /* Right Side (Questions) */
+        .main {
+            flex: 1;
+            padding: 18px;
+            overflow-y: auto;
         }
 
         #timer {
-            font-size: 18px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #d9534f;
+            margin-bottom: 12px;
+        }
+
+        .progress {
+            height: 8px;
+            background: #ccc;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #19376D;
+            width: 0%;
+            transition: width 0.3s;
         }
 
         .question-box {
-            padding: 14px;
+            background: #fff;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        .question-box h2 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
+        .question-meta {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 10px;
         }
 
         .options label {
-            font-size: 14px;
-            padding: 10px;
+            display: block;
+            background: #f7f7f7;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            font-size: 15px;
+        }
+
+        .options input {
+            margin-right: 10px;
+        }
+
+        /* Buttons */
+        .nav-buttons {
+            margin-top: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         button {
-            font-size: 14px;
-            padding: 10px;
-            min-width: 100px;
+            padding: 12px 20px;
+            background: #19376D;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            min-width: 110px;
+        }
+
+        button:hover {
+            background: #0B2447;
+        }
+
+        button:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        /* Result Overlay */
+        .result-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            padding: 20px;
         }
 
         .result-box {
-            padding: 16px;
-            max-width: 350px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 430px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
         }
-    }
-</style>
+
+        .result-box button {
+            width: 100%;
+            margin-top: 12px;
+        }
+
+        .small-note {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* 📱 MOBILE RESPONSIVE FIXES */
+        @media (max-width: 900px) {
+            .layout {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .sidebar {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding-bottom: 10px;
+                max-height: 200px;
+            }
+
+            .main {
+                height: auto;
+            }
+
+            .q-btn {
+                width: 38px;
+                height: 38px;
+                line-height: 38px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            #timer {
+                font-size: 18px;
+            }
+
+            .question-box {
+                padding: 14px;
+            }
+
+            .options label {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 10px;
+                min-width: 100px;
+            }
+
+            .result-box {
+                padding: 16px;
+                max-width: 350px;
+            }
+        }
+    </style>
 
 </head>
+
 <body oncontextmenu="return false;">
 
-<div class="header">
-    <div>PCEP Mock Exam – Secure</div>
-    <div style="font-size: 12px;">
-        Exam ID: <span id="examId"></span>
-    </div>
-</div>
-
-<div class="layout">
-
-    <div class="sidebar">
-        <h3>Questions</h3>
-        <div id="questionButtons"></div>
-    </div>
-
-    <div class="main">
-        <div id="timer"></div>
-
-        <div class="progress">
-            <div id="progressBar" class="progress-bar"></div>
-        </div>
-
-        <div id="quiz"></div>
-
-        <div class="nav-buttons">
-            <button id="prevBtn" onclick="prevQuestion()">Previous</button>
-            <button id="nextBtn" onclick="nextQuestion()">Next</button>
-            <button id="submitBtn" onclick="submitQuiz()">Submit</button>
+    <div class="header">
+        <div>PCEP Mock Exam – Secure</div>
+        <div style="font-size: 12px;">
+            Exam ID: <span id="examId"></span>
         </div>
     </div>
-</div>
 
-<div id="resultOverlay" class="result-overlay">
-    <div class="result-box">
-        <h2>Exam Finished</h2>
-        <p id="resultText"></p>
-        <p class="small-note">
-            Answers are locked. This result cannot be changed.
-        </p>
+    <div class="layout">
 
-        <button onclick="copyAnswers()" style="
+        <div class="sidebar">
+            <h3>Questions</h3>
+            <div id="questionButtons"></div>
+        </div>
+
+        <div class="main">
+            <div id="timer"></div>
+
+            <div class="progress">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+
+            <div id="quiz"></div>
+
+            <div class="nav-buttons">
+                <button id="prevBtn" onclick="prevQuestion()">Previous</button>
+                <button id="nextBtn" onclick="nextQuestion()">Next</button>
+                <button id="submitBtn" onclick="submitQuiz()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="resultOverlay" class="result-overlay">
+        <div class="result-box">
+            <h2>Exam Finished</h2>
+            <p id="resultText"></p>
+            <p class="small-note">
+                Answers are locked. This result cannot be changed.
+            </p>
+
+            <button onclick="copyAnswers()" style="
             padding:10px 16px;
             margin-top:10px;
             background:#4CAF50;
@@ -317,644 +319,643 @@
             cursor:pointer;
             font-size:14px;
         ">
-            Copy Answers
-        </button>
+                Copy Answers
+            </button>
 
 
+        </div>
     </div>
-</div>
-
-<script>
-/* ===========================
-   1. Seeded RNG utilities
-   =========================== */
-// Deterministic PRNG – mulberry32
-function mulberry32(a) {
-    return function() {
-        let t = a += 0x6D2B79F5;
-        t = Math.imul(t ^ t >>> 15, t | 1);
-        t ^= t + Math.imul(t ^ t >>> 7, t | 61);
-        return ((t ^ t >>> 14) >>> 0) / 4294967296;
-    };
-}
-
-// Seeded shuffle
-function seededShuffle(array, seed) {
-    const rand = mulberry32(seed);
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(rand() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
-
-/* ===========================
-   2. Raw question bank
-   - mix of easy/medium/hard
-   - with set: 'A' | 'B' | 'C'
-   =========================== */
-
-const rawQuestions = [
-
-/* ----------------------------- SET A (Easy–Medium) ----------------------------- */
-
-{
-    set:"A", level:"easy",
-    q:"Which data type represents whole numbers in Python?",
-    options:["float","str","int","bool"],
-    answer:2,
-    explanation:"int is used for whole numbers without decimals."
-},
-
-{
-    set:"A", level:"easy",
-    q:"What is the output of: print(type('3'))?",
-    options:["int","str","float","bool"],
-    answer:1,
-    explanation:"'3' is a string, so type('3') returns <class 'str'>."
-},
-
-{
-    set:"A", level:"easy",
-    q:"Which operator checks equality?",
-    options:["=","==","===","!="],
-    answer:1,
-    explanation:"== is the comparison operator for equality."
-},
-
-{
-    set:"A", level:"easy",
-    q:"What does len('python') return?",
-    options:["5","6","7","Error"],
-    answer:1,
-    explanation:"The string 'python' contains 6 characters."
-},
-
-{
-    set:"A", level:"easy",
-    q:"Which of the following is a mutable type?",
-    options:["str","int","tuple","list"],
-    answer:3,
-    explanation:"Lists are mutable; strings, ints, tuples are immutable."
-},
-
-{
-    set:"A", level:"easy",
-    q:"Which is NOT a valid variable name?",
-    options:["name_1","_value","2name","firstName"],
-    answer:2,
-    explanation:"Variables cannot start with digits."
-},
-
-{
-    set:"A", level:"easy",
-    q:"Result of: print(10//3)?",
-    options:["3","3.3","4","Error"],
-    answer:0,
-    explanation:"// performs floor division → 3."
-},
-
-{
-    set:"A", level:"easy",
-    q:"Which function converts a string to an integer?",
-    options:["str()","int()","float()","eval()"],
-    answer:1,
-    explanation:"int('123') → 123."
-},
-
-{
-    set:"A", level:"easy",
-    q:"Output: print(bool(''))",
-    options:["True","False","None","Error"],
-    answer:1,
-    explanation:"Empty strings evaluate to False."
-},
-
-{
-    set:"A", level:"easy",
-    q:"Which of these is used for comments in Python?",
-    options:["//","#","/* */","--"],
-    answer:1,
-    explanation:"# is used to create comments."
-},
-
-{
-    set:"A", level:"medium",
-    q:"Output: s='hello'; print(s[0])",
-    options:["h","e","hello","Error"],
-    answer:0,
-    explanation:"s[0] returns the first character."
-},
-
-{
-    set:"A", level:"medium",
-    q:"Which method adds an element to a list?",
-    options:["add()","append()","push()","insertall()"],
-    answer:1,
-    explanation:"list.append(value) adds at the end."
-},
-
-{
-    set:"A", level:"medium",
-    q:"Output: print(type([1,2,3]))",
-    options:["tuple","list","set","dict"],
-    answer:1,
-    explanation:"[] creates a list."
-},
-
-{
-    set:"A", level:"medium",
-    q:"What is the result of: 2 ** 3 ** 1?",
-    options:["8","16","6","Error"],
-    answer:0,
-    explanation:"3 ** 1 = 3 → 2 ** 3 = 8."
-},
-
-{
-    set:"A", level:"medium",
-    q:"Which expression slices first 3 characters of s='Python'?",
-    options:["s[0:3]","s[1:3]","s[:2]","s[2:5]"],
-    answer:0,
-    explanation:"s[0:3] gives 'Pyt'."
-},
-
-{
-    set:"A", level:"medium",
-    q:"Output: print([1,2] + [3,4])",
-    options:["[1,2,3,4]","[1,2][3,4]","Error","[4,3,2,1]"],
-    answer:0,
-    explanation:"+ concatenates lists."
-},
-
-{
-    set:"A", level:"medium",
-    q:"Which type is returned by input()?",
-    options:["int","float","str","depends"],
-    answer:2,
-    explanation:"input() ALWAYS returns a string."
-},
-
-{
-    set:"A", level:"medium",
-    q:"Which operator returns remainder?",
-    options:["/","%","//","**"],
-    answer:1,
-    explanation:"% returns remainder after division."
-},
-
-{
-    set:"A", level:"medium",
-    q:"Output: print('abc' * 2)",
-    options:["'abcabc'","['abc','abc']","Error","None"],
-    answer:0,
-    explanation:"String repetition duplicates the content."
-},
-
-{
-    set:"A", level:"medium",
-    q:"Which function returns max value in list?",
-    options:["top()","largest()","max()","high()"],
-    answer:2,
-    explanation:"max(list) returns the maximum element."
-},
-
-/* ----------------------------- SET B (Control Flow / Medium-Hard) ----------------------------- */
-
-{
-    set:"B", level:"easy",
-    q:"Which keyword starts a loop?",
-    options:["for","loop","iterate","repeat"],
-    answer:0,
-    explanation:"Python loops use 'for' or 'while'."
-},
-
-{
-    set:"B", level:"easy",
-    q:"What does continue do?",
-    options:["Ends loop","Skips next iteration","Skips current iteration","Restarts program"],
-    answer:2,
-    explanation:"continue skips the current iteration."
-},
-
-{
-    set:"B", level:"easy",
-    q:"Output: for i in range(3): print(i)",
-    options:["1 2 3","0 1 2","0 1 2 3","1 2"],
-    answer:1,
-    explanation:"range(3) → 0,1,2."
-},
-
-{
-    set:"B", level:"easy",
-    q:"Which statement begins a conditional?",
-    options:["when","if","case","switch"],
-    answer:1,
-    explanation:"if starts a conditional block."
-},
-
-{
-    set:"B", level:"easy",
-    q:"Which operator means NOT equal?",
-    options:["==","!=","<>","!"],
-    answer:1,
-    explanation:"!= is Python's not-equal operator."
-},
-
-{
-    set:"B", level:"medium",
-    q:"Output: x=3; if x>2: print('A') else: print('B')",
-    options:["A","B","Error","None"],
-    answer:0,
-    explanation:"3 > 2 so prints A."
-},
-
-{
-    set:"B", level:"medium",
-    q:"Output: for i in range(1,4): print(i,end=' ')",
-    options:["1 2 3","0 1 2","1 2 3 4","Error"],
-    answer:0,
-    explanation:"range(1,4) → 1,2,3."
-},
-
-{
-    set:"B", level:"medium",
-    q:"Which statement raises KeyError?",
-    options:["d.get('x')","d['x']","d.pop('x',None)","'x' in d"],
-    answer:1,
-    explanation:"Accessing missing key directly raises KeyError."
-},
-
-{
-    set:"B", level:"medium",
-    q:"Which type is unordered?",
-    options:["list","tuple","set","string"],
-    answer:2,
-    explanation:"Sets are unordered collections."
-},
-
-{
-    set:"B", level:"medium",
-    q:"Output: print(len({'a':1,'b':2}))",
-    options:["1","2","3","Error"],
-    answer:1,
-    explanation:"Dictionary has 2 key-value pairs."
-},
-
-{
-    set:"B", level:"medium",
-    q:"Which loops until condition becomes False?",
-    options:["for","while","repeat","loop"],
-    answer:1,
-    explanation:"while continues until its condition is false."
-},
-
-{
-    set:"B", level:"medium",
-    q:"Output: x=0; for i in [2,4]: x+=i; print(x)",
-    options:["2","4","6","Error"],
-    answer:2,
-    explanation:"x = 0 + 2 + 4 = 6."
-},
-
-{
-    set:"B", level:"medium",
-    q:"Which method removes last element of a list?",
-    options:["pop()","remove()","delete()","cut()"],
-    answer:0,
-    explanation:"pop() removes and returns last element by default."
-},
-
-{
-    set:"B", level:"medium",
-    q:"Which keyword defines a function?",
-    options:["def","func","make","method"],
-    answer:0,
-    explanation:"Functions are defined using the 'def' keyword."
-},
-
-{
-    set:"B", level:"hard",
-    q:"Output: for i in range(1,5,2): print(i,end=' ')",
-    options:["1 3","1 2 3 4","2 4","3 5"],
-    answer:0,
-    explanation:"range(1,5,2) → 1,3."
-},
-
-{
-    set:"B", level:"hard",
-    q:"Output: if False: print(1) elif True: print(2)",
-    options:["1","2","Nothing","Error"],
-    answer:1,
-    explanation:"elif True executes."
-},
-
-{
-    set:"B", level:"hard",
-    q:"Output: print([i*i for i in range(3)])",
-    options:["[1,4,9]","[0,1,4]","[0,1,2]","Error"],
-    answer:1,
-    explanation:"Squares of 0,1,2 → [0,1,4]."
-},
-
-{
-    set:"B", level:"hard",
-    q:"Output: print({1,2,2,3})",
-    options:["{1,2,2,3}","[1,2,3]","{1,2,3}","Error"],
-    answer:2,
-    explanation:"Sets remove duplicates → {1,2,3}."
-},
-
-{
-    set:"B", level:"hard",
-    q:"Which is NOT allowed?",
-    options:["list indexing","tuple indexing","string indexing","set indexing"],
-    answer:3,
-    explanation:"Sets do not support indexing."
-},
-
-{
-    set:"B", level:"hard",
-    q:"Output: x=5; y=10; print(x<y and y>3)",
-    options:["True","False","None","Error"],
-    answer:0,
-    explanation:"Both conditions True → True."
-},
-
-/* ----------------------------- SET C (Functions, Errors, Hard) ----------------------------- */
-
-{
-    set:"C", level:"easy",
-    q:"What error occurs if you access list[10] when list has 3 elements?",
-    options:["TypeError","IndexError","KeyError","ValueError"],
-    answer:1,
-    explanation:"Accessing out of range index raises IndexError."
-},
-
-{
-    set:"C", level:"easy",
-    q:"Output: print(type(True))",
-    options:["int","bool","str","NoneType"],
-    answer:1,
-    explanation:"True and False are boolean values."
-},
-
-{
-    set:"C", level:"easy",
-    q:"Which module provides mathematical functions?",
-    options:["sys","os","math","random"],
-    answer:2,
-    explanation:"math contains functions like sqrt(), sin(), floor(), etc."
-},
-
-{
-    set:"C", level:"easy",
-    q:"What does float('3.5') return?",
-    options:["3","3.5","'3.5'","Error"],
-    answer:1,
-    explanation:"It converts string to float."
-},
-
-{
-    set:"C", level:"easy",
-    q:"Which raises ZeroDivisionError?",
-    options:["5/0","5//0","5%0","All of these"],
-    answer:3,
-    explanation:"Any division or modulo by zero raises ZeroDivisionError."
-},
-
-{
-    set:"C", level:"easy",
-    q:"Which opens a file for reading?",
-    options:["open('f','w')","open('f','r')","open('f','a')","open('f')"],
-    answer:1,
-    explanation:"'r' mode is for reading; default is also 'r'."
-},
-
-{
-    set:"C", level:"medium",
-    q:"Output: def f(x): return x+1; print(f(4))",
-    options:["4","5","None","Error"],
-    answer:1,
-    explanation:"4 + 1 = 5."
-},
-
-{
-    set:"C", level:"medium",
-    q:"Output: print('PCEP'.lower())",
-    options:["PCEP","pcep","Error","Pcep"],
-    answer:1,
-    explanation:"lower() converts to lowercase."
-},
-
-{
-    set:"C", level:"medium",
-    q:"Which data type is immutable?",
-    options:["list","set","tuple","dict"],
-    answer:2,
-    explanation:"Tuple cannot be changed after creation."
-},
-
-{
-    set:"C", level:"medium",
-    q:"Which statement catches exceptions?",
-    options:["try-except","handle-error","catch()","if-else"],
-    answer:0,
-    explanation:"try-except handles runtime exceptions."
-},
-
-{
-    set:"C", level:"medium",
-    q:"Output: print(len((1,2,3)))",
-    options:["2","3","4","Error"],
-    answer:1,
-    explanation:"Tuple has 3 elements."
-},
-
-{
-    set:"C", level:"medium",
-    q:"Which returns absolute value?",
-    options:["abs()","fabs()","positive()","absval()"],
-    answer:0,
-    explanation:"abs(-5) → 5."
-},
-
-{
-    set:"C", level:"medium",
-    q:"Output: print('abc'.replace('a','z'))",
-    options:["abc","zbc","abz","Error"],
-    answer:1,
-    explanation:"Replaces 'a' with 'z'."
-},
-
-{
-    set:"C", level:"medium",
-    q:"Output: sum([1,2,3])",
-    options:["3","6","1+2+3","Error"],
-    answer:1,
-    explanation:"sum(list) adds numbers → 6."
-},
-
-{
-    set:"C", level:"medium",
-    q:"Which method removes whitespace?",
-    options:["trim()","strip()","clean()","erase()"],
-    answer:1,
-    explanation:"strip() removes leading and trailing spaces."
-},
-
-{
-    set:"C", level:"hard",
-    q:"Output: x=0; for i in range(3): x+=i; print(x)",
-    options:["0","3","6","Error"],
-    answer:1,
-    explanation:"0+1+2 = 3."
-},
-
-{
-    set:"C", level:"hard",
-    q:"Output: print([1,2,3]*2)",
-    options:["[1,2,3,1,2,3]","[2,4,6]","Error","[1,2]"],
-    answer:0,
-    explanation:"List repetition duplicates elements."
-},
-
-{
-    set:"C", level:"hard",
-    q:"What is result of '3'+'4'?",
-    options:["7","34","'34'","Error"],
-    answer:2,
-    explanation:"String concatenation results in '34'."
-},
-
-{
-    set:"C", level:"hard",
-    q:"Which causes TypeError?",
-    options:["3+'3'","'3'+'3'","3+3","3*'3'"],
-    answer:0,
-    explanation:"Cannot add integer and string."
-},
-
-{
-    set:"C", level:"hard",
-    q:"Output: print([i for i in range(3) if i%2==0])",
-    options:["[0,2]","[1]","[0]","[1,2]"],
-    answer:0,
-    explanation:"Even numbers from 0..2 → [0,2]."
-},
-
-{
-    set:"C", level:"hard",
-    q:"Which function returns ASCII code of a character?",
-    options:["ord()","chr()","ascii()","code()"],
-    answer:0,
-    explanation:"ord('A') returns 65."
-},
-
-{
-    set:"C", level:"hard",
-    q:"Output: print(chr(97))",
-    options:["A","a","Error","ASCII"],
-    answer:1,
-    explanation:"chr(97) returns 'a'."
-},
-
-{
-    set:"C", level:"hard",
-    q:"Output: list('abc')",
-    options:["['abc']","['a','b','c']","('a','b','c')","Error"],
-    answer:1,
-    explanation:"list(string) splits into characters."
-},
-
-{
-    set:"C", level:"hard",
-    q:"Output: print(min([3,1,2]))",
-    options:["1","2","3","Error"],
-    answer:0,
-    explanation:"min returns smallest element → 1."
-}
-
-];
-
-
-/*
-NOTE:
-Right now bank has 30 questions.
-To expand to 60/100, just keep adding objects in the same format.
-You can balance sets A/B/C however you like.
-*/
-
-/* ===========================
-   3. Build exam from seed
-   =========================== */
-
-let examQuestions = [];
-let userAnswers = [];
-let current = 0;
-let examSubmitted = false;
-
-const seed = Math.floor(Math.random() * 1_000_000_000);
-document.getElementById("examId").innerText = seed;
-
-// choose set A/B/C based on seed
-const sets = ["A","B","C"];
-const chosenSet = sets[seed % sets.length];
-
-function createExamFromSeed() {
-    // 1. filter by set
-    let pool = rawQuestions.filter(q => q.set === chosenSet);
-    // if not enough, just fall back to all
-    if (pool.length < 30) {
-        pool = rawQuestions.slice();
-    }
-
-    // 2. seeded shuffle pool
-    seededShuffle(pool, seed);
-
-    // 3. take first 30
-    const selected = pool.slice(0, 30);
-
-    // 4. shuffle options per question (deterministically)
-    examQuestions = selected.map((q, idx) => {
-        const optionsCopy = q.options.slice();
-        const correctOption = q.options[q.answer];
-
-        // use a derived seed for each question
-        const qSeed = seed + idx * 9973;
-        seededShuffle(optionsCopy, qSeed);
-
-        const newAnswerIndex = optionsCopy.indexOf(correctOption);
-
-        return {
-            set: q.set,
-            level: q.level,
-            q: q.q,
-            options: optionsCopy,
-            answer: newAnswerIndex
-        };
-    });
-
-    userAnswers = new Array(examQuestions.length).fill(null);
-}
-
-createExamFromSeed();
-
-/* ===========================
-   4. UI + Exam Logic
-   =========================== */
-
-function renderSidebar() {
-    let html = "";
-    for (let i = 0; i < examQuestions.length; i++) {
-        html += `<div class="q-btn" id="qbtn${i}" onclick="jumpTo(${i})">${i+1}</div>`;
-    }
-    document.getElementById("questionButtons").innerHTML = html;
-}
-
-function loadQuestion() {
-    const q = examQuestions[current];
-    const quizDiv = document.getElementById("quiz");
-
-    quizDiv.innerHTML = `
+
+    <script>
+        /* ===========================
+           1. Seeded RNG utilities
+           =========================== */
+        // Deterministic PRNG – mulberry32
+        function mulberry32(a) {
+            return function () {
+                let t = a += 0x6D2B79F5;
+                t = Math.imul(t ^ t >>> 15, t | 1);
+                t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+                return ((t ^ t >>> 14) >>> 0) / 4294967296;
+            };
+        }
+
+        // Seeded shuffle
+        function seededShuffle(array, seed) {
+            const rand = mulberry32(seed);
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(rand() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        /* ===========================
+           2. Raw question bank
+           - mix of easy/medium/hard
+           - with set: 'A' | 'B' | 'C'
+           =========================== */
+
+        const rawQuestions = [
+
+            /* ----------------------------- SET A (Easy–Medium) ----------------------------- */
+
+            {
+                set: "A", level: "easy",
+                q: "Which data type represents whole numbers in Python?",
+                options: ["float", "str", "int", "bool"],
+                answer: 2,
+                explanation: "int is used for whole numbers without decimals."
+            },
+
+            {
+                set: "A", level: "easy",
+                q: "What is the output of: print(type('3'))?",
+                options: ["int", "str", "float", "bool"],
+                answer: 1,
+                explanation: "'3' is a string, so type('3') returns <class 'str'>."
+            },
+
+            {
+                set: "A", level: "easy",
+                q: "Which operator checks equality?",
+                options: ["=", "==", "===", "!="],
+                answer: 1,
+                explanation: "== is the comparison operator for equality."
+            },
+
+            {
+                set: "A", level: "easy",
+                q: "What does len('python') return?",
+                options: ["5", "6", "7", "Error"],
+                answer: 1,
+                explanation: "The string 'python' contains 6 characters."
+            },
+
+            {
+                set: "A", level: "easy",
+                q: "Which of the following is a mutable type?",
+                options: ["str", "int", "tuple", "list"],
+                answer: 3,
+                explanation: "Lists are mutable; strings, ints, tuples are immutable."
+            },
+
+            {
+                set: "A", level: "easy",
+                q: "Which is NOT a valid variable name?",
+                options: ["name_1", "_value", "2name", "firstName"],
+                answer: 2,
+                explanation: "Variables cannot start with digits."
+            },
+
+            {
+                set: "A", level: "easy",
+                q: "Result of: print(10//3)?",
+                options: ["3", "3.3", "4", "Error"],
+                answer: 0,
+                explanation: "// performs floor division → 3."
+            },
+
+            {
+                set: "A", level: "easy",
+                q: "Which function converts a string to an integer?",
+                options: ["str()", "int()", "float()", "eval()"],
+                answer: 1,
+                explanation: "int('123') → 123."
+            },
+
+            {
+                set: "A", level: "easy",
+                q: "Output: print(bool(''))",
+                options: ["True", "False", "None", "Error"],
+                answer: 1,
+                explanation: "Empty strings evaluate to False."
+            },
+
+            {
+                set: "A", level: "easy",
+                q: "Which of these is used for comments in Python?",
+                options: ["//", "#", "/* */", "--"],
+                answer: 1,
+                explanation: "# is used to create comments."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "Output: s='hello'; print(s[0])",
+                options: ["h", "e", "hello", "Error"],
+                answer: 0,
+                explanation: "s[0] returns the first character."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "Which method adds an element to a list?",
+                options: ["add()", "append()", "push()", "insertall()"],
+                answer: 1,
+                explanation: "list.append(value) adds at the end."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "Output: print(type([1,2,3]))",
+                options: ["tuple", "list", "set", "dict"],
+                answer: 1,
+                explanation: "[] creates a list."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "What is the result of: 2 ** 3 ** 1?",
+                options: ["8", "16", "6", "Error"],
+                answer: 0,
+                explanation: "3 ** 1 = 3 → 2 ** 3 = 8."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "Which expression slices first 3 characters of s='Python'?",
+                options: ["s[0:3]", "s[1:3]", "s[:2]", "s[2:5]"],
+                answer: 0,
+                explanation: "s[0:3] gives 'Pyt'."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "Output: print([1,2] + [3,4])",
+                options: ["[1,2,3,4]", "[1,2][3,4]", "Error", "[4,3,2,1]"],
+                answer: 0,
+                explanation: "+ concatenates lists."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "Which type is returned by input()?",
+                options: ["int", "float", "str", "depends"],
+                answer: 2,
+                explanation: "input() ALWAYS returns a string."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "Which operator returns remainder?",
+                options: ["/", "%", "//", "**"],
+                answer: 1,
+                explanation: "% returns remainder after division."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "Output: print('abc' * 2)",
+                options: ["'abcabc'", "['abc','abc']", "Error", "None"],
+                answer: 0,
+                explanation: "String repetition duplicates the content."
+            },
+
+            {
+                set: "A", level: "medium",
+                q: "Which function returns max value in list?",
+                options: ["top()", "largest()", "max()", "high()"],
+                answer: 2,
+                explanation: "max(list) returns the maximum element."
+            },
+
+            /* ----------------------------- SET B (Control Flow / Medium-Hard) ----------------------------- */
+
+            {
+                set: "B", level: "easy",
+                q: "Which keyword starts a loop?",
+                options: ["for", "loop", "iterate", "repeat"],
+                answer: 0,
+                explanation: "Python loops use 'for' or 'while'."
+            },
+
+            {
+                set: "B", level: "easy",
+                q: "What does continue do?",
+                options: ["Ends loop", "Skips next iteration", "Skips current iteration", "Restarts program"],
+                answer: 2,
+                explanation: "continue skips the current iteration."
+            },
+
+            {
+                set: "B", level: "easy",
+                q: "Output: for i in range(3): print(i)",
+                options: ["1 2 3", "0 1 2", "0 1 2 3", "1 2"],
+                answer: 1,
+                explanation: "range(3) → 0,1,2."
+            },
+
+            {
+                set: "B", level: "easy",
+                q: "Which statement begins a conditional?",
+                options: ["when", "if", "case", "switch"],
+                answer: 1,
+                explanation: "if starts a conditional block."
+            },
+
+            {
+                set: "B", level: "easy",
+                q: "Which operator means NOT equal?",
+                options: ["==", "!=", "<>", "!"],
+                answer: 1,
+                explanation: "!= is Python's not-equal operator."
+            },
+
+            {
+                set: "B", level: "medium",
+                q: "Output: x=3; if x>2: print('A') else: print('B')",
+                options: ["A", "B", "Error", "None"],
+                answer: 0,
+                explanation: "3 > 2 so prints A."
+            },
+
+            {
+                set: "B", level: "medium",
+                q: "Output: for i in range(1,4): print(i,end=' ')",
+                options: ["1 2 3", "0 1 2", "1 2 3 4", "Error"],
+                answer: 0,
+                explanation: "range(1,4) → 1,2,3."
+            },
+
+            {
+                set: "B", level: "medium",
+                q: "Which statement raises KeyError?",
+                options: ["d.get('x')", "d['x']", "d.pop('x',None)", "'x' in d"],
+                answer: 1,
+                explanation: "Accessing missing key directly raises KeyError."
+            },
+
+            {
+                set: "B", level: "medium",
+                q: "Which type is unordered?",
+                options: ["list", "tuple", "set", "string"],
+                answer: 2,
+                explanation: "Sets are unordered collections."
+            },
+
+            {
+                set: "B", level: "medium",
+                q: "Output: print(len({'a':1,'b':2}))",
+                options: ["1", "2", "3", "Error"],
+                answer: 1,
+                explanation: "Dictionary has 2 key-value pairs."
+            },
+
+            {
+                set: "B", level: "medium",
+                q: "Which loops until condition becomes False?",
+                options: ["for", "while", "repeat", "loop"],
+                answer: 1,
+                explanation: "while continues until its condition is false."
+            },
+
+            {
+                set: "B", level: "medium",
+                q: "Output: x=0; for i in [2,4]: x+=i; print(x)",
+                options: ["2", "4", "6", "Error"],
+                answer: 2,
+                explanation: "x = 0 + 2 + 4 = 6."
+            },
+
+            {
+                set: "B", level: "medium",
+                q: "Which method removes last element of a list?",
+                options: ["pop()", "remove()", "delete()", "cut()"],
+                answer: 0,
+                explanation: "pop() removes and returns last element by default."
+            },
+
+            {
+                set: "B", level: "medium",
+                q: "Which keyword defines a function?",
+                options: ["def", "func", "make", "method"],
+                answer: 0,
+                explanation: "Functions are defined using the 'def' keyword."
+            },
+
+            {
+                set: "B", level: "hard",
+                q: "Output: for i in range(1,5,2): print(i,end=' ')",
+                options: ["1 3", "1 2 3 4", "2 4", "3 5"],
+                answer: 0,
+                explanation: "range(1,5,2) → 1,3."
+            },
+
+            {
+                set: "B", level: "hard",
+                q: "Output: if False: print(1) elif True: print(2)",
+                options: ["1", "2", "Nothing", "Error"],
+                answer: 1,
+                explanation: "elif True executes."
+            },
+
+            {
+                set: "B", level: "hard",
+                q: "Output: print([i*i for i in range(3)])",
+                options: ["[1,4,9]", "[0,1,4]", "[0,1,2]", "Error"],
+                answer: 1,
+                explanation: "Squares of 0,1,2 → [0,1,4]."
+            },
+
+            {
+                set: "B", level: "hard",
+                q: "Output: print({1,2,2,3})",
+                options: ["{1,2,2,3}", "[1,2,3]", "{1,2,3}", "Error"],
+                answer: 2,
+                explanation: "Sets remove duplicates → {1,2,3}."
+            },
+
+            {
+                set: "B", level: "hard",
+                q: "Which is NOT allowed?",
+                options: ["list indexing", "tuple indexing", "string indexing", "set indexing"],
+                answer: 3,
+                explanation: "Sets do not support indexing."
+            },
+
+            {
+                set: "B", level: "hard",
+                q: "Output: x=5; y=10; print(x<y and y>3)",
+                options: ["True", "False", "None", "Error"],
+                answer: 0,
+                explanation: "Both conditions True → True."
+            },
+
+            /* ----------------------------- SET C (Functions, Errors, Hard) ----------------------------- */
+
+            {
+                set: "C", level: "easy",
+                q: "What error occurs if you access list[10] when list has 3 elements?",
+                options: ["TypeError", "IndexError", "KeyError", "ValueError"],
+                answer: 1,
+                explanation: "Accessing out of range index raises IndexError."
+            },
+
+            {
+                set: "C", level: "easy",
+                q: "Output: print(type(True))",
+                options: ["int", "bool", "str", "NoneType"],
+                answer: 1,
+                explanation: "True and False are boolean values."
+            },
+
+            {
+                set: "C", level: "easy",
+                q: "Which module provides mathematical functions?",
+                options: ["sys", "os", "math", "random"],
+                answer: 2,
+                explanation: "math contains functions like sqrt(), sin(), floor(), etc."
+            },
+
+            {
+                set: "C", level: "easy",
+                q: "What does float('3.5') return?",
+                options: ["3", "3.5", "'3.5'", "Error"],
+                answer: 1,
+                explanation: "It converts string to float."
+            },
+
+            {
+                set: "C", level: "easy",
+                q: "Which raises ZeroDivisionError?",
+                options: ["5/0", "5//0", "5%0", "All of these"],
+                answer: 3,
+                explanation: "Any division or modulo by zero raises ZeroDivisionError."
+            },
+
+            {
+                set: "C", level: "easy",
+                q: "Which opens a file for reading?",
+                options: ["open('f','w')", "open('f','r')", "open('f','a')", "open('f')"],
+                answer: 1,
+                explanation: "'r' mode is for reading; default is also 'r'."
+            },
+
+            {
+                set: "C", level: "medium",
+                q: "Output: def f(x): return x+1; print(f(4))",
+                options: ["4", "5", "None", "Error"],
+                answer: 1,
+                explanation: "4 + 1 = 5."
+            },
+
+            {
+                set: "C", level: "medium",
+                q: "Output: print('PCEP'.lower())",
+                options: ["PCEP", "pcep", "Error", "Pcep"],
+                answer: 1,
+                explanation: "lower() converts to lowercase."
+            },
+
+            {
+                set: "C", level: "medium",
+                q: "Which data type is immutable?",
+                options: ["list", "set", "tuple", "dict"],
+                answer: 2,
+                explanation: "Tuple cannot be changed after creation."
+            },
+
+            {
+                set: "C", level: "medium",
+                q: "Which statement catches exceptions?",
+                options: ["try-except", "handle-error", "catch()", "if-else"],
+                answer: 0,
+                explanation: "try-except handles runtime exceptions."
+            },
+
+            {
+                set: "C", level: "medium",
+                q: "Output: print(len((1,2,3)))",
+                options: ["2", "3", "4", "Error"],
+                answer: 1,
+                explanation: "Tuple has 3 elements."
+            },
+
+            {
+                set: "C", level: "medium",
+                q: "Which returns absolute value?",
+                options: ["abs()", "fabs()", "positive()", "absval()"],
+                answer: 0,
+                explanation: "abs(-5) → 5."
+            },
+
+            {
+                set: "C", level: "medium",
+                q: "Output: print('abc'.replace('a','z'))",
+                options: ["abc", "zbc", "abz", "Error"],
+                answer: 1,
+                explanation: "Replaces 'a' with 'z'."
+            },
+
+            {
+                set: "C", level: "medium",
+                q: "Output: sum([1,2,3])",
+                options: ["3", "6", "1+2+3", "Error"],
+                answer: 1,
+                explanation: "sum(list) adds numbers → 6."
+            },
+
+            {
+                set: "C", level: "medium",
+                q: "Which method removes whitespace?",
+                options: ["trim()", "strip()", "clean()", "erase()"],
+                answer: 1,
+                explanation: "strip() removes leading and trailing spaces."
+            },
+
+            {
+                set: "C", level: "hard",
+                q: "Output: x=0; for i in range(3): x+=i; print(x)",
+                options: ["0", "3", "6", "Error"],
+                answer: 1,
+                explanation: "0+1+2 = 3."
+            },
+
+            {
+                set: "C", level: "hard",
+                q: "Output: print([1,2,3]*2)",
+                options: ["[1,2,3,1,2,3]", "[2,4,6]", "Error", "[1,2]"],
+                answer: 0,
+                explanation: "List repetition duplicates elements."
+            },
+
+            {
+                set: "C", level: "hard",
+                q: "What is result of '3'+'4'?",
+                options: ["7", "34", "'34'", "Error"],
+                answer: 2,
+                explanation: "String concatenation results in '34'."
+            },
+
+            {
+                set: "C", level: "hard",
+                q: "Which causes TypeError?",
+                options: ["3+'3'", "'3'+'3'", "3+3", "3*'3'"],
+                answer: 0,
+                explanation: "Cannot add integer and string."
+            },
+
+            {
+                set: "C", level: "hard",
+                q: "Output: print([i for i in range(3) if i%2==0])",
+                options: ["[0,2]", "[1]", "[0]", "[1,2]"],
+                answer: 0,
+                explanation: "Even numbers from 0..2 → [0,2]."
+            },
+
+            {
+                set: "C", level: "hard",
+                q: "Which function returns ASCII code of a character?",
+                options: ["ord()", "chr()", "ascii()", "code()"],
+                answer: 0,
+                explanation: "ord('A') returns 65."
+            },
+
+            {
+                set: "C", level: "hard",
+                q: "Output: print(chr(97))",
+                options: ["A", "a", "Error", "ASCII"],
+                answer: 1,
+                explanation: "chr(97) returns 'a'."
+            },
+
+            {
+                set: "C", level: "hard",
+                q: "Output: list('abc')",
+                options: ["['abc']", "['a','b','c']", "('a','b','c')", "Error"],
+                answer: 1,
+                explanation: "list(string) splits into characters."
+            },
+
+            {
+                set: "C", level: "hard",
+                q: "Output: print(min([3,1,2]))",
+                options: ["1", "2", "3", "Error"],
+                answer: 0,
+                explanation: "min returns smallest element → 1."
+            }
+
+        ];
+
+        /*
+        NOTE:
+        Right now bank has 30 questions.
+        To expand to 60/100, just keep adding objects in the same format.
+        You can balance sets A/B/C however you like.
+        */
+
+        /* ===========================
+           3. Build exam from seed
+           =========================== */
+
+        let examQuestions = [];
+        let userAnswers = [];
+        let current = 0;
+        let examSubmitted = false;
+
+        const seed = Math.floor(Math.random() * 1_000_000_000);
+        document.getElementById("examId").innerText = seed;
+
+        // choose set A/B/C based on seed
+        const sets = ["A", "B", "C"];
+        const chosenSet = sets[seed % sets.length];
+
+        function createExamFromSeed() {
+            // 1. filter by set
+            let pool = rawQuestions.filter(q => q.set === chosenSet);
+            // if not enough, just fall back to all
+            if (pool.length < 30) {
+                pool = rawQuestions.slice();
+            }
+
+            // 2. seeded shuffle pool
+            seededShuffle(pool, seed);
+
+            // 3. take first 30
+            const selected = pool.slice(0, 30);
+
+            // 4. shuffle options per question (deterministically)
+            examQuestions = selected.map((q, idx) => {
+                const optionsCopy = q.options.slice();
+                const correctOption = q.options[q.answer];
+
+                // use a derived seed for each question
+                const qSeed = seed + idx * 9973;
+                seededShuffle(optionsCopy, qSeed);
+
+                const newAnswerIndex = optionsCopy.indexOf(correctOption);
+
+                return {
+                    set: q.set,
+                    level: q.level,
+                    q: q.q,
+                    options: optionsCopy,
+                    answer: newAnswerIndex
+                };
+            });
+
+            userAnswers = new Array(examQuestions.length).fill(null);
+        }
+
+        createExamFromSeed();
+
+        /* ===========================
+           4. UI + Exam Logic
+           =========================== */
+
+        function renderSidebar() {
+            let html = "";
+            for (let i = 0; i < examQuestions.length; i++) {
+                html += `<div class="q-btn" id="qbtn${i}" onclick="jumpTo(${i})">${i + 1}</div>`;
+            }
+            document.getElementById("questionButtons").innerHTML = html;
+        }
+
+        function loadQuestion() {
+            const q = examQuestions[current];
+            const quizDiv = document.getElementById("quiz");
+
+            quizDiv.innerHTML = `
         <div class="question-box">
             <h2>Question ${current + 1}</h2>
             <div class="question-meta">
@@ -974,152 +975,153 @@ function loadQuestion() {
         </div>
     `;
 
-    updateSidebar();
-    updateProgress();
-    updateNavButtons();
-}
-
-function saveAnswer() {
-    if (examSubmitted) return;
-    const selected = document.querySelector(`input[name="q${current}"]:checked`);
-    if (selected) {
-        userAnswers[current] = parseInt(selected.value);
-    }
-}
-
-function nextQuestion() {
-    if (examSubmitted) return;
-    saveAnswer();
-    if (current < examQuestions.length - 1) {
-        current++;
-        loadQuestion();
-    }
-}
-
-function prevQuestion() {
-    if (examSubmitted) return;
-    saveAnswer();
-    if (current > 0) {
-        current--;
-        loadQuestion();
-    }
-}
-
-function jumpTo(n) {
-    if (examSubmitted) return;
-    saveAnswer();
-    current = n;
-    loadQuestion();
-}
-
-function updateSidebar() {
-    for (let i = 0; i < examQuestions.length; i++) {
-        const btn = document.getElementById(`qbtn${i}`);
-        btn.classList.remove("q-current", "q-answered", "q-locked");
-
-        if (i === current) btn.classList.add("q-current");
-        if (userAnswers[i] !== null) btn.classList.add("q-answered");
-        if (examSubmitted) btn.classList.add("q-locked");
-    }
-}
-
-function updateProgress() {
-    const answered = userAnswers.filter(a => a !== null).length;
-    const pct = (answered / examQuestions.length) * 100;
-    document.getElementById("progressBar").style.width = pct + "%";
-}
-
-function updateNavButtons() {
-    document.getElementById("prevBtn").disabled = examSubmitted || current === 0;
-    document.getElementById("nextBtn").disabled = examSubmitted || current === examQuestions.length - 1;
-    document.getElementById("submitBtn").disabled = examSubmitted;
-}
-
-/* ===========================
-   5. Submit / Lock / Result
-   =========================== */
-
-function disableAllRadios() {
-    document.querySelectorAll("input[type='radio']").forEach(r => r.disabled = true);
-}
-
-function submitQuiz() {
-    if (examSubmitted) return;
-
-    saveAnswer();
-
-    // require all answers
-    if (userAnswers.includes(null)) {
-        alert("You must answer ALL questions before submitting.");
-        return;
-    }
-
-    examSubmitted = true;
-    disableAllRadios();
-    updateSidebar();
-    updateNavButtons();
-
-    let score = 0;
-    for (let i = 0; i < examQuestions.length; i++) {
-        if (userAnswers[i] === examQuestions[i].answer) {
-            score++;
+            updateSidebar();
+            updateProgress();
+            updateNavButtons();
         }
-    }
-    console.log("Student Answers:", JSON.stringify(userAnswers));
-    const percent = Math.round((score / examQuestions.length) * 100);
-    const passMark = 70;
-    const status = percent >= passMark ? "PASSED ✅" : "FAILED ❌";
 
-    document.getElementById("resultText").innerText =
-        `Score: ${score} / ${examQuestions.length} (${percent}%)\nStatus: ${status}\nExam ID: ${seed}`;
-
-    document.getElementById("resultOverlay").style.display = "flex";
-}
-
-/* ===========================
-   6. Timer (45 min, auto-submit)
-   =========================== */
-
-let time = 30 * 60; // 45 minutes
-
-function updateTimer() {
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
-
-    document.getElementById("timer").innerHTML =
-        "Time Left: " + minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
-
-    if (time <= 0) {
-        if (!examSubmitted) {
-            alert("Time is over. The exam will be submitted automatically.");
-            submitQuiz();
+        function saveAnswer() {
+            if (examSubmitted) return;
+            const selected = document.querySelector(`input[name="q${current}"]:checked`);
+            if (selected) {
+                userAnswers[current] = parseInt(selected.value);
+            }
         }
-    } else {
-        time--;
-    }
-}
 
-setInterval(updateTimer, 1000);
+        function nextQuestion() {
+            if (examSubmitted) return;
+            saveAnswer();
+            if (current < examQuestions.length - 1) {
+                current++;
+                loadQuestion();
+            }
+        }
 
-/* ===========================
-   7. Init
-   =========================== */
+        function prevQuestion() {
+            if (examSubmitted) return;
+            saveAnswer();
+            if (current > 0) {
+                current--;
+                loadQuestion();
+            }
+        }
 
-renderSidebar();
-loadQuestion();
-function copyAnswers() {
-    const examId = document.getElementById("examId").innerText;
+        function jumpTo(n) {
+            if (examSubmitted) return;
+            saveAnswer();
+            current = n;
+            loadQuestion();
+        }
 
-    const dataToCopy = 
-`Exam ID: ${examId}
+        function updateSidebar() {
+            for (let i = 0; i < examQuestions.length; i++) {
+                const btn = document.getElementById(`qbtn${i}`);
+                btn.classList.remove("q-current", "q-answered", "q-locked");
+
+                if (i === current) btn.classList.add("q-current");
+                if (userAnswers[i] !== null) btn.classList.add("q-answered");
+                if (examSubmitted) btn.classList.add("q-locked");
+            }
+        }
+
+        function updateProgress() {
+            const answered = userAnswers.filter(a => a !== null).length;
+            const pct = (answered / examQuestions.length) * 100;
+            document.getElementById("progressBar").style.width = pct + "%";
+        }
+
+        function updateNavButtons() {
+            document.getElementById("prevBtn").disabled = examSubmitted || current === 0;
+            document.getElementById("nextBtn").disabled = examSubmitted || current === examQuestions.length - 1;
+            document.getElementById("submitBtn").disabled = examSubmitted;
+        }
+
+        /* ===========================
+           5. Submit / Lock / Result
+           =========================== */
+
+        function disableAllRadios() {
+            document.querySelectorAll("input[type='radio']").forEach(r => r.disabled = true);
+        }
+
+        function submitQuiz() {
+            if (examSubmitted) return;
+
+            saveAnswer();
+
+            // require all answers
+            if (userAnswers.includes(null)) {
+                alert("You must answer ALL questions before submitting.");
+                return;
+            }
+
+            examSubmitted = true;
+            disableAllRadios();
+            updateSidebar();
+            updateNavButtons();
+
+            let score = 0;
+            for (let i = 0; i < examQuestions.length; i++) {
+                if (userAnswers[i] === examQuestions[i].answer) {
+                    score++;
+                }
+            }
+            console.log("Student Answers:", JSON.stringify(userAnswers));
+            const percent = Math.round((score / examQuestions.length) * 100);
+            const passMark = 70;
+            const status = percent >= passMark ? "PASSED ✅" : "FAILED ❌";
+
+            document.getElementById("resultText").innerText =
+                `Score: ${score} / ${examQuestions.length} (${percent}%)\nStatus: ${status}\nExam ID: ${seed}`;
+
+            document.getElementById("resultOverlay").style.display = "flex";
+        }
+
+        /* ===========================
+           6. Timer (45 min, auto-submit)
+           =========================== */
+
+        let time = 30 * 60; // 45 minutes
+
+        function updateTimer() {
+            const minutes = Math.floor(time / 60);
+            const seconds = time % 60;
+
+            document.getElementById("timer").innerHTML =
+                "Time Left: " + minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
+
+            if (time <= 0) {
+                if (!examSubmitted) {
+                    alert("Time is over. The exam will be submitted automatically.");
+                    submitQuiz();
+                }
+            } else {
+                time--;
+            }
+        }
+
+        setInterval(updateTimer, 1000);
+
+        /* ===========================
+           7. Init
+           =========================== */
+
+        renderSidebar();
+        loadQuestion();
+        function copyAnswers() {
+            const examId = document.getElementById("examId").innerText;
+
+            const dataToCopy =
+                `Exam ID: ${examId}
 Answers: ${JSON.stringify(userAnswers)}`;
 
-    navigator.clipboard.writeText(dataToCopy).then(() => {
-        alert("Copied!\n\nNow share the Exam ID + Answers with your teacher.");
-    });
-}
+            navigator.clipboard.writeText(dataToCopy).then(() => {
+                alert("Copied!\n\nNow share the Exam ID + Answers with your teacher.");
+            });
+        }
 
-</script>
+    </script>
 
 </body>
+
 </html>
