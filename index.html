@@ -230,6 +230,21 @@
         <p class="small-note">
             Answers are locked. This result cannot be changed.
         </p>
+
+        <button onclick="copyAnswers()" style="
+            padding:10px 16px;
+            margin-top:10px;
+            background:#4CAF50;
+            color:white;
+            border:none;
+            border-radius:6px;
+            cursor:pointer;
+            font-size:14px;
+        ">
+            Copy Answers
+        </button>
+
+
     </div>
 </div>
 
@@ -621,7 +636,7 @@ function submitQuiz() {
             score++;
         }
     }
-
+    console.log("Student Answers:", JSON.stringify(userAnswers));
     const percent = Math.round((score / examQuestions.length) * 100);
     const passMark = 70;
     const status = percent >= passMark ? "PASSED ✅" : "FAILED ❌";
@@ -663,6 +678,18 @@ setInterval(updateTimer, 1000);
 
 renderSidebar();
 loadQuestion();
+function copyAnswers() {
+    const examId = document.getElementById("examId").innerText;
+
+    const dataToCopy = 
+`Exam ID: ${examId}
+Answers: ${JSON.stringify(userAnswers)}`;
+
+    navigator.clipboard.writeText(dataToCopy).then(() => {
+        alert("Copied!\n\nNow share the Exam ID + Answers with your teacher.");
+    });
+}
+
 </script>
 
 </body>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PCEP Exam Admin Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #eef1f5;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        background: #19376D;
+        color: white;
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .box {
+        background: white;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 12px;
+        box-shadow: 0 0 10px #ccc;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        font-size: 16px;
+    }
+
+    button {
+        padding: 12px 20px;
+        background: #19376D;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background: #0B2447;
+    }
+
+    .result {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 10px;
+        background: #fff;
+    }
+
+    .correct {
+        background: #d4edda;
+        padding: 6px;
+        margin-bottom: 6px;
+        border-radius: 5px;
+    }
+
+    .wrong {
+        background: #f8d7da;
+        padding: 6px;
+        margin-bottom: 6px;
+        border-radius: 5px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>PCEP Exam — Admin Panel</h1>
+
+<div class="box">
+    <h2>Reconstruct and Verify Student Exam</h2>
+
+    <label>Enter Exam ID (Seed)</label>
+    <input id="seedInput" placeholder="Example: 4728384">
+
+    <label>Enter Student Answers Array</label>
+    <textarea id="answersInput" rows="4" placeholder="Example: [1,0,3,2, ...]"></textarea>
+
+    <button onclick="reconstructExam()">Rebuild & Score Exam</button>
+</div>
+
+<div id="results" class="result" style="display:none;"></div>
+
+<script>
+/* ============================================
+   SAME RAW QUESTION BANK AS MAIN EXAM PAGE
+   (Make sure this matches your main exam file)
+=============================================== */
+const rawQuestions = [
+    { set:"A",level:"easy",q:"What is the type of 3.14 in Python?",options:["int","float","str","complex"],answer:1},
+    { set:"A",level:"easy",q:"Which is a valid variable name?",options:["1name","first_name","for","user-name"],answer:1},
+    { set:"A",level:"easy",q:"Which operator is used for exponentiation?",options:["^","**","//","exp()"],answer:1},
+    { set:"A",level:"easy",q:"What does len('Python') return?",options:["5","6","7","Error"],answer:1},
+    { set:"A",level:"medium",q:"Result of: a=5; b=2.0; print(a + b)?",options:["7","7.0","7.00","Error"],answer:1},
+    { set:"A",level:"medium",q:"Which checks if n is even?",options:["n/2 == 0","n%2 == 0","n//2 == 0","n == 2"],answer:1},
+    { set:"A",level:"medium",q:"Output: s='hello'; print(s[1:4])?",options:["he","hel","ell","ello"],answer:2},
+    { set:"A",level:"medium",q:"Which is true for tuples?",options:["Mutable","Use []","Immutable","Have .append()"],answer:2},
+    { set:"A",level:"medium",q:"What does list(range(2, 7, 2)) equal?",options:["[2,3,4,5,6]","[2,4,6]","[2,4]","[2,3,4,5]"],answer:1},
+    { set:"A",level:"hard",q:"Output: L=[1,2,3]; L[1]=L[1]+L[2]; print(L)?",options:["[1,2,3]","[1,5,3]","[3,2,3]","[1,2,5]"],answer:1},
+
+    { set:"B",level:"easy",q:"Which keyword starts a function definition?",options:["func","def","function","define"],answer:1},
+    { set:"B",level:"easy",q:"Which takes input from user?",options:["scan()","input()","read()","gets()"],answer:1},
+    { set:"B",level:"easy",q:"Which loop runs exactly 5 times?",options:["for i in range(5)","for i in range(1,5)","for i in range(0,6)","while True"],answer:0},
+    { set:"B",level:"medium",q:"What does break do in a loop?",options:["Skips iteration","Ends loop","Pauses loop","Restarts loop"],answer:1},
+    { set:"B",level:"medium",q:"While output: n=3; while n>0: print(n,end=' '); n-=1",options:["3 2 1","1 2 3","3 2","2 1"],answer:0},
+    { set:"B",level:"medium",q:"Which is NOT a mutable type?",options:["list","dict","tuple","set"],answer:2},
+    { set:"B",level:"medium",q:"Dict d={'a':1,'b':2}. How to get value 2?",options:["d.b","d['b']","d.get('c')","d(1)"],answer:1},
+    { set:"B",level:"medium",q:"Which raises KeyError?",options:["d['x']","d.get('x')","len(d)","'x' in d"],answer:0},
+    { set:"B",level:"hard",q:"Output: x=5; if x>5: print('A') elif x==5: print('B') else: print('C')",options:["A","B","C","Nothing"],answer:1},
+    { set:"B",level:"hard",q:"Output: L=[10,20,30,40]; print(L[-3])",options:["10","20","30","40"],answer:1},
+
+    { set:"C",level:"easy",q:"What is raised by 5/0?",options:["ValueError","ZeroDivisionError","TypeError","IndexError"],answer:1},
+    { set:"C",level:"easy",q:"Which imports only sqrt from math?",options:["import math.sqrt","from math import sqrt","include math.sqrt","using math.sqrt"],answer:1},
+    { set:"C",level:"easy",q:"Convert '123' to integer:",options:["int('123')","str(123)","float('123')","bool('123')"],answer:0},
+    { set:"C",level:"medium",q:"Output: def f(x): return x*2; print(f(3))",options:["3","6","None","Error"],answer:1},
+    { set:"C",level:"medium",q:"Output: s='PCEP'; print(s.lower())",options:["PCEP","pcep","Error","pcEp"],answer:1},
+    { set:"C",level:"medium",q:"Which checks if list L is non-empty?",options:["if len(L)>0","if L","if L!=[]","All of these"],answer:3},
+    { set:"C",level:"medium",q:"Which is true about strings?",options:["Mutable","Immutable","Change in-place","Cannot index"],answer:1},
+    { set:"C",level:"hard",q:"Output: x=0; for i in range(3): x+=i; print(x)",options:["0","3","6","Error"],answer:1},
+    { set:"C",level:"hard",q:"Output: L=[1,2,3]; print(L*2)",options:["[1,2,3,1,2,3]","[2,4,6]","[1,2,3,2]","Error"],answer:0},
+    { set:"C",level:"hard",q:"Result of '5' + '5'?",options:["10","'10'","'55'","Error"],answer:2}
+];
+
+/* ====================================================
+   SEED UTILITIES (must match exam system)
+==================================================== */
+function mulberry32(a) {
+    return function() {
+        let t = a += 0x6D2B79F5;
+        t = Math.imul(t ^ (t >>> 15), t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return (((t ^ (t >>> 14)) >>> 0) / 4294967296);
+    }
+}
+
+function seededShuffle(array, seed) {
+    const rand = mulberry32(seed);
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(rand() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+/* ====================================================
+   RECONSTRUCT EXAM FOR ADMIN
+==================================================== */
+function reconstructExam() {
+    const seed = parseInt(document.getElementById("seedInput").value.trim());
+    const studentAnswers = JSON.parse(document.getElementById("answersInput").value.trim());
+
+    if (!seed || !studentAnswers) {
+        alert("Please enter seed and student answer array.");
+        return;
+    }
+
+    // Determine set
+    const sets = ["A","B","C"];
+    const chosenSet = sets[seed % sets.length];
+
+    // Filter bank
+    let pool = rawQuestions.filter(q => q.set === chosenSet);
+    if (pool.length < 30) pool = rawQuestions.slice();
+
+    // Shuffle pool
+    let poolCopy = pool.slice();
+    seededShuffle(poolCopy, seed);
+
+    // Pick first 30
+    const sel = poolCopy.slice(0,30);
+
+    // Re-shuffle options deterministically
+    let finalExam = sel.map((q, idx) => {
+        const opts = q.options.slice();
+        const correct = q.options[q.answer];
+
+        seededShuffle(opts, seed + idx * 9973);
+        const newIndex = opts.indexOf(correct);
+
+        return {
+            q: q.q,
+            options: opts,
+            correct: newIndex
+        };
+    });
+
+    // Score exam
+    let score = 0;
+    let html = `<h2>Reconstructed Exam (Seed ${seed})</h2>`;
+
+    for (let i = 0; i < 30; i++) {
+        const student = studentAnswers[i];
+        const real = finalExam[i].correct;
+
+        if (student === real) {
+            score++;
+            html += `<div class="correct">
+                        <b>Q${i+1}:</b> Correct ✔  
+                        <br>Student: ${finalExam[i].options[student]}
+                     </div>`;
+        } else {
+            html += `<div class="wrong">
+                        <b>Q${i+1}:</b> Wrong ✘  
+                        <br>Student: ${finalExam[i].options[student] || "No Answer"}
+                        <br>Correct: ${finalExam[i].options[real]}
+                     </div>`;
+        }
+    }
+
+    html += `<h3>Final Score: ${score} / 30</h3>`;
+
+    const resultsBox = document.getElementById("results");
+    resultsBox.style.display = "block";
+    resultsBox.innerHTML = html;
+}
+</script>
+
+</body>
+</html>
