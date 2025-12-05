@@ -97,39 +97,255 @@
    (Make sure this matches your main exam file)
 =============================================== */
 const rawQuestions = [
-    { set:"A",level:"easy",q:"What is the type of 3.14 in Python?",options:["int","float","str","complex"],answer:1},
-    { set:"A",level:"easy",q:"Which is a valid variable name?",options:["1name","first_name","for","user-name"],answer:1},
-    { set:"A",level:"easy",q:"Which operator is used for exponentiation?",options:["^","**","//","exp()"],answer:1},
-    { set:"A",level:"easy",q:"What does len('Python') return?",options:["5","6","7","Error"],answer:1},
-    { set:"A",level:"medium",q:"Result of: a=5; b=2.0; print(a + b)?",options:["7","7.0","7.00","Error"],answer:1},
-    { set:"A",level:"medium",q:"Which checks if n is even?",options:["n/2 == 0","n%2 == 0","n//2 == 0","n == 2"],answer:1},
-    { set:"A",level:"medium",q:"Output: s='hello'; print(s[1:4])?",options:["he","hel","ell","ello"],answer:2},
-    { set:"A",level:"medium",q:"Which is true for tuples?",options:["Mutable","Use []","Immutable","Have .append()"],answer:2},
-    { set:"A",level:"medium",q:"What does list(range(2, 7, 2)) equal?",options:["[2,3,4,5,6]","[2,4,6]","[2,4]","[2,3,4,5]"],answer:1},
-    { set:"A",level:"hard",q:"Output: L=[1,2,3]; L[1]=L[1]+L[2]; print(L)?",options:["[1,2,3]","[1,5,3]","[3,2,3]","[1,2,5]"],answer:1},
 
-    { set:"B",level:"easy",q:"Which keyword starts a function definition?",options:["func","def","function","define"],answer:1},
-    { set:"B",level:"easy",q:"Which takes input from user?",options:["scan()","input()","read()","gets()"],answer:1},
-    { set:"B",level:"easy",q:"Which loop runs exactly 5 times?",options:["for i in range(5)","for i in range(1,5)","for i in range(0,6)","while True"],answer:0},
-    { set:"B",level:"medium",q:"What does break do in a loop?",options:["Skips iteration","Ends loop","Pauses loop","Restarts loop"],answer:1},
-    { set:"B",level:"medium",q:"While output: n=3; while n>0: print(n,end=' '); n-=1",options:["3 2 1","1 2 3","3 2","2 1"],answer:0},
-    { set:"B",level:"medium",q:"Which is NOT a mutable type?",options:["list","dict","tuple","set"],answer:2},
-    { set:"B",level:"medium",q:"Dict d={'a':1,'b':2}. How to get value 2?",options:["d.b","d['b']","d.get('c')","d(1)"],answer:1},
-    { set:"B",level:"medium",q:"Which raises KeyError?",options:["d['x']","d.get('x')","len(d)","'x' in d"],answer:0},
-    { set:"B",level:"hard",q:"Output: x=5; if x>5: print('A') elif x==5: print('B') else: print('C')",options:["A","B","C","Nothing"],answer:1},
-    { set:"B",level:"hard",q:"Output: L=[10,20,30,40]; print(L[-3])",options:["10","20","30","40"],answer:1},
+    /* ------------------ SET A ------------------ */
 
-    { set:"C",level:"easy",q:"What is raised by 5/0?",options:["ValueError","ZeroDivisionError","TypeError","IndexError"],answer:1},
-    { set:"C",level:"easy",q:"Which imports only sqrt from math?",options:["import math.sqrt","from math import sqrt","include math.sqrt","using math.sqrt"],answer:1},
-    { set:"C",level:"easy",q:"Convert '123' to integer:",options:["int('123')","str(123)","float('123')","bool('123')"],answer:0},
-    { set:"C",level:"medium",q:"Output: def f(x): return x*2; print(f(3))",options:["3","6","None","Error"],answer:1},
-    { set:"C",level:"medium",q:"Output: s='PCEP'; print(s.lower())",options:["PCEP","pcep","Error","pcEp"],answer:1},
-    { set:"C",level:"medium",q:"Which checks if list L is non-empty?",options:["if len(L)>0","if L","if L!=[]","All of these"],answer:3},
-    { set:"C",level:"medium",q:"Which is true about strings?",options:["Mutable","Immutable","Change in-place","Cannot index"],answer:1},
-    { set:"C",level:"hard",q:"Output: x=0; for i in range(3): x+=i; print(x)",options:["0","3","6","Error"],answer:1},
-    { set:"C",level:"hard",q:"Output: L=[1,2,3]; print(L*2)",options:["[1,2,3,1,2,3]","[2,4,6]","[1,2,3,2]","Error"],answer:0},
-    { set:"C",level:"hard",q:"Result of '5' + '5'?",options:["10","'10'","'55'","Error"],answer:2}
+    {
+        set:"A", level:"easy",
+        q:"What is the type of 3.14 in Python?",
+        options:["int","float","str","complex"],
+        answer:1,
+        explanation:"Numbers with decimals are treated as floating-point numbers in Python, so 3.14 is a float."
+    },
+
+    {
+        set:"A", level:"easy",
+        q:"Which is a valid variable name?",
+        options:["1name","first_name","for","user-name"],
+        answer:1,
+        explanation:"Variable names cannot start with digits, cannot contain hyphens, and cannot use reserved keywords like 'for'."
+    },
+
+    {
+        set:"A", level:"easy",
+        q:"Which operator is used for exponentiation?",
+        options:["^","**","//","exp()"],
+        answer:1,
+        explanation:"Python uses the ** operator for exponentiation. ^ is a bitwise XOR operator."
+    },
+
+    {
+        set:"A", level:"easy",
+        q:"What does len('Python') return?",
+        options:["5","6","7","Error"],
+        answer:1,
+        explanation:"The string 'Python' has 6 characters, so len('Python') returns 6."
+    },
+
+    {
+        set:"A", level:"medium",
+        q:"Result of: a=5; b=2.0; print(a + b)?",
+        options:["7","7.0","7.00","Error"],
+        answer:1,
+        explanation:"Adding an int and a float produces a float, so the result is 7.0."
+    },
+
+    {
+        set:"A", level:"medium",
+        q:"Which checks if n is even?",
+        options:["n/2 == 0","n%2 == 0","n//2 == 0","n == 2"],
+        answer:1,
+        explanation:"Even numbers leave no remainder when divided by 2, so n % 2 == 0 correctly checks evenness."
+    },
+
+    {
+        set:"A", level:"medium",
+        q:"Output: s='hello'; print(s[1:4])?",
+        options:["he","hel","ell","ello"],
+        answer:2,
+        explanation:"Slice s[1:4] takes characters at indices 1,2,3 → 'e','l','l' → 'ell'."
+    },
+
+    {
+        set:"A", level:"medium",
+        q:"Which is true for tuples?",
+        options:["Mutable","Use []","Immutable","Have .append()"],
+        answer:2,
+        explanation:"Tuples are immutable (cannot be changed after creation)."
+    },
+
+    {
+        set:"A", level:"medium",
+        q:"What does list(range(2, 7, 2)) equal?",
+        options:["[2,3,4,5,6]","[2,4,6]","[2,4]","[2,3,4,5]"],
+        answer:1,
+        explanation:"range(2,7,2) generates 2, 4, 6 (stops before 7, step = 2)."
+    },
+
+    {
+        set:"A", level:"hard",
+        q:"Output: L=[1,2,3]; L[1]=L[1]+L[2]; print(L)?",
+        options:["[1,2,3]","[1,5,3]","[3,2,3]","[1,2,5]"],
+        answer:1,
+        explanation:"L[1] becomes 2+3 = 5 → list becomes [1,5,3]."
+    },
+
+    /* ------------------ SET B ------------------ */
+
+    {
+        set:"B", level:"easy",
+        q:"Which keyword starts a function definition?",
+        options:["func","def","function","define"],
+        answer:1,
+        explanation:"Python uses the keyword 'def' to define functions."
+    },
+
+    {
+        set:"B", level:"easy",
+        q:"Which takes input from user?",
+        options:["scan()","input()","read()","gets()"],
+        answer:1,
+        explanation:"The built-in input() function reads user input as a string."
+    },
+
+    {
+        set:"B", level:"easy",
+        q:"Which loop runs exactly 5 times?",
+        options:["for i in range(5)","for i in range(1,5)","for i in range(0,6)","while True"],
+        answer:0,
+        explanation:"range(5) produces values 0..4 → exactly 5 iterations."
+    },
+
+    {
+        set:"B", level:"medium",
+        q:"What does break do in a loop?",
+        options:["Skips iteration","Ends loop","Pauses loop","Restarts loop"],
+        answer:1,
+        explanation:"break immediately exits the closest loop."
+    },
+
+    {
+        set:"B", level:"medium",
+        q:"While output: n=3; while n>0: print(n,end=' '); n-=1",
+        options:["3 2 1","1 2 3","3 2","2 1"],
+        answer:0,
+        explanation:"Loop prints 3, then 2, then 1 before stopping."
+    },
+
+    {
+        set:"B", level:"medium",
+        q:"Which is NOT a mutable type?",
+        options:["list","dict","tuple","set"],
+        answer:2,
+        explanation:"Tuples are immutable; lists, dictionaries, and sets are mutable."
+    },
+
+    {
+        set:"B", level:"medium",
+        q:"Dict d={'a':1,'b':2}. How to get value 2?",
+        options:["d.b","d['b']","d.get('c')","d(1)"],
+        answer:1,
+        explanation:"d['b'] accesses the key 'b'. d.b is not valid Python syntax."
+    },
+
+    {
+        set:"B", level:"medium",
+        q:"Which raises KeyError?",
+        options:["d['x']","d.get('x')","len(d)","'x' in d"],
+        answer:0,
+        explanation:"d['x'] tries to access a missing key and raises KeyError; d.get('x') safely returns None."
+    },
+
+    {
+        set:"B", level:"hard",
+        q:"Output: x=5; if x>5: print('A') elif x==5: print('B') else: print('C')",
+        options:["A","B","C","Nothing"],
+        answer:1,
+        explanation:"x equals 5, so the elif branch runs and prints 'B'."
+    },
+
+    {
+        set:"B", level:"hard",
+        q:"Output: L=[10,20,30,40]; print(L[-3])",
+        options:["10","20","30","40"],
+        answer:1,
+        explanation:"Index -3 refers to the third item from the end → value 20."
+    },
+
+    /* ------------------ SET C ------------------ */
+
+    {
+        set:"C", level:"easy",
+        q:"What is raised by 5/0?",
+        options:["ValueError","ZeroDivisionError","TypeError","IndexError"],
+        answer:1,
+        explanation:"Dividing by zero always raises ZeroDivisionError."
+    },
+
+    {
+        set:"C", level:"easy",
+        q:"Which imports only sqrt from math?",
+        options:["import math.sqrt","from math import sqrt","include math.sqrt","using math.sqrt"],
+        answer:1,
+        explanation:"from math import sqrt imports only the sqrt function."
+    },
+
+    {
+        set:"C", level:"easy",
+        q:"Convert '123' to integer:",
+        options:["int('123')","str(123)","float('123')","bool('123')"],
+        answer:0,
+        explanation:"int('123') converts the string '123' into integer 123."
+    },
+
+    {
+        set:"C", level:"medium",
+        q:"Output: def f(x): return x*2; print(f(3))",
+        options:["3","6","None","Error"],
+        answer:1,
+        explanation:"f(3) returns 3*2 = 6."
+    },
+
+    {
+        set:"C", level:"medium",
+        q:"Output: s='PCEP'; print(s.lower())",
+        options:["PCEP","pcep","Error","pcEp"],
+        answer:1,
+        explanation:"lower() converts all characters to lowercase → 'pcep'."
+    },
+
+    {
+        set:"C", level:"medium",
+        q:"Which checks if list L is non-empty?",
+        options:["if len(L)>0","if L","if L!=[]","All of these"],
+        answer:3,
+        explanation:"All statements check non-empty lists correctly. An empty list evaluates to False."
+    },
+
+    {
+        set:"C", level:"medium",
+        q:"Which is true about strings?",
+        options:["Mutable","Immutable","Change in-place","Cannot index"],
+        answer:1,
+        explanation:"Strings in Python are immutable—you cannot modify characters directly."
+    },
+
+    {
+        set:"C", level:"hard",
+        q:"Output: x=0; for i in range(3): x+=i; print(x)",
+        options:["0","3","6","Error"],
+        answer:1,
+        explanation:"Loop adds 0 + 1 + 2 = 3."
+    },
+
+    {
+        set:"C", level:"hard",
+        q:"Output: L=[1,2,3]; print(L*2)",
+        options:["[1,2,3,1,2,3]","[2,4,6]","[1,2,3,2]","Error"],
+        answer:0,
+        explanation:"List repetition duplicates the list: L*2 → [1,2,3,1,2,3]."
+    },
+
+    {
+        set:"C", level:"hard",
+        q:"Result of '5' + '5'?",
+        options:["10","'10'","'55'","Error"],
+        answer:2,
+        explanation:"String + string performs concatenation → '5' + '5' = '55'."
+    }
+
 ];
+
 
 /* ====================================================
    SEED UTILITIES (must match exam system)
